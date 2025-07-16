@@ -3,7 +3,8 @@ const temprature = [3, -2, -6, -1, "error", 9, 13, 17, 15, 14, 9, 5];
 maximum = function (arr) {
   let max = arr[0];
   for (let i = 0; i < arr.length; i++) {
-    if (arr[i] === "error") {                           //if content === 'error' then ignore it and move on
+    if (arr[i] === "error") {
+      //if the value is 'error' then ignore it
       continue;
     } else if (arr[i] > max) {
       max = arr[i];
@@ -12,12 +13,12 @@ maximum = function (arr) {
   return max;
 };
 
-
 //finding minimum value
 minimum = function (arr) {
   let min = arr[0];
   for (let i = 0; i < arr.length; i++) {
-    if (arr[i] === "error") {                        //if content === 'error' then ignore it and move on
+    if (arr[i] === "error") {
+      //if the value is 'error' then ignore it
       continue;
     } else if (arr[i] < min) {
       min = arr[i];
@@ -25,8 +26,7 @@ minimum = function (arr) {
   }
   return min;
 };
-
-// finding amplitude
+//finding amplitude;
 amplitude = function () {
   return maximum(temprature) - minimum(temprature);
 };
