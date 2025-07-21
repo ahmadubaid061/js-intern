@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Name Generator</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <form id="generator">
+      <h1>Generate Business name</h1>
+      <div>
+        <input
+          type="Name"
+          class="adjective"
+          placeholder="enter an adjective(crazy,heavy,pure, etc)"
+          required
+        />
+      </div>
+      <div>
+        <input
+          type="name"
+          class="postfix"
+          placeholder="please enter a postfix(hub,Ltd etc)"
+        />
+      </div>
+      <div>
+        <input
+          type="Name"
+          class="business"
+          placeholder="enter you Business"
+          required
+        />
+      </div>
+
+      <div class="button">
+        <button type="submit" class="submit">Generate</button>
+        <button class="reset hidden">Reset</button>
+      </div>
+      <div class="output">
+        <output id="output"></output>
+      </div>
+    </form>
+    <script src="script.js"></script>
+  </body>
+</html>
