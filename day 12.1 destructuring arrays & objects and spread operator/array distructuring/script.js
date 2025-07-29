@@ -32,6 +32,10 @@ const array = [
 ];
 
 const [cars, food, colors, hobby] = array;
+console.log('cars are:',cars);
+console.log('foods are:',food);
+console.log('colors are:',colors);
+console.log('hobbies are:',hobby);
 function favouriteCollection() {
   const random = Math.trunc(Math.random() * 4);
   return [cars[random], food[random], colors[random], hobby[random]];
