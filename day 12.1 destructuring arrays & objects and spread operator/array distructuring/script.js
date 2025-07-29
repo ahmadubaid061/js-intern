@@ -23,19 +23,20 @@ let p = 3;
 console.log("q now is: ", q);
 console.log("p now is: ", p);
 
-////////////////////////////// function returning more than one values
+
 const array = [
   ["GLi", "XLi", "BMW", "ferrari"],
   ["salad", "Biryani", "noodles", "chicken"],
   ["brown", "black", "purple", "grey"],
   ["football", "jodu", "taicondo"],
 ];
-
+///////////////////////////////distructuring into cars,foods,colors and hobbies
 const [cars, food, colors, hobby] = array;
 console.log('cars are:',cars);
 console.log('foods are:',food);
 console.log('colors are:',colors);
 console.log('hobbies are:',hobby);
+////////////////////////////// function returning more than one values
 function favouriteCollection() {
   const random = Math.trunc(Math.random() * 4);
   return [cars[random], food[random], colors[random], hobby[random]];
