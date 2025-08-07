@@ -33,16 +33,9 @@ console.log(gameEvents);
 
 // 3. Compute and log the following string to the console: "An event happened, on
 // average, every 9 minutes" (keep in mind that a game has 90 minutes)
-let sum = 0;
-let average = 0;
-gameEvents.forEach((value, keys) => {
-  sum += keys;
-});
 
-console.log(sum);
-average = sum / 90;
-console.log(`An event happened on average, every ${average} minutes `);
-//since event at min 64 was deleted so thje average is not 9 now
+console.log(`An event happened on average, every ${90 / gameEvents.size} minutes `);
+
 
 // 4. Loop over 'gameEvents' and log each element to the console, marking
 // whether it's in the first half or second half (after 45 min) of the game, like this:
@@ -53,3 +46,4 @@ gameEvents.forEach((values, keys) => {
     ? console.log(`[SECOND HALF] ${keys}, ${values}`)
     : console.log(`[First HALF] ${keys}, ${values}`);
 });
+
