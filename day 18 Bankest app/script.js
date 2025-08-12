@@ -60,7 +60,7 @@ const inputTransferAmount = document.querySelector(".form__input--amount");
 const inputLoanAmount = document.querySelector(".form__input--loan-amount");
 const inputCloseUsername = document.querySelector(".form__input--user");
 const inputClosePin = document.querySelector(".form__input--pin");
-
+//-----------------------------------------diplay Movements------------------------------------
 const displayMovements = function (movements) {
   containerMovements.innerHTML = "";
   movements.forEach(function (mov, i) {
@@ -80,6 +80,17 @@ const displayMovements = function (movements) {
 };
 displayMovements(account1.movements);
 
+//---------------------------------------Calculate balance and display it----------------------------
+const calculateBalance = function (movements) {
+  const balance = movements.reduce((acc, curr, i) => {
+    return acc + curr;
+  }, 0);
+  labelBalance.textContent = `${balance} €`;
+};
+calculateBalance(account1.movements);
+
+//---------------------------------------create User Name-----------------------------------
+
 const creatUserName = function (account) {
   account.forEach(function (acc) {
     acc.username = acc.owner
@@ -90,5 +101,6 @@ const creatUserName = function (account) {
   });
 };
 creatUserName(accounts);
+
 
 
