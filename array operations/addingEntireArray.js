@@ -8,6 +8,13 @@ const add=function(...array){
     }
     return sum;
 }
+///////////////////////using reduce method////////////////////////////
+const sumUsingReduce = function (arr) {
+  let sum = arr.reduce((acc, curr) => acc + curr, 0);
+  return sum;
+};
+const array=[45,46,76,23,35,57];
+console.log('sum using reduce method is: ',sumUsingReduce(array);
 ///////////////////////////finding average/////////////////////////////
 function findAverage(...array){
     let sum=0;
@@ -23,4 +30,5 @@ let sum=add(...numbers);
 console.log('the sum is: ',sum);
 
 let average=findAverage(...numbers)
+
 console.log('average is: ',average);
