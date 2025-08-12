@@ -16,7 +16,7 @@
 const checkDogs = function (arr1, arr2) {
   arr1 = arr1.slice(1, -2);
   const array = [...arr1, ...arr2];
-  array.sort();
+
   array.forEach(function (value, i) {
     value >= 3
       ? console.log(
@@ -27,7 +27,13 @@ const checkDogs = function (arr1, arr2) {
         );
   });
 };
-const arr1 = [1, 2, 3, 4, 5];
-const arr2 = [2, 6, 7, 8, 9];
+let arr1 = [3, 5, 2, 12, 7];
+let arr2 = [4, 1, 15, 8, 3];
 
+checkDogs(arr1, arr2);
+console.log(
+  "-------------------------------Second Data-----------------------------"
+);
+arr1 = [9, 16, 6, 8, 3];
+arr2 = [10, 5, 6, 1, 4];
 checkDogs(arr1, arr2);
