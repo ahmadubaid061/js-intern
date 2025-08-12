@@ -80,7 +80,7 @@ const displayMovements = function (movements) {
 };
 displayMovements(account1.movements);
 
-//---------------------------------------Calculate balance and display it----------------------------
+//---------------------------------------Calculate balance and display it using Reduce Method----------------------------
 const calculateBalance = function (movements) {
   const balance = movements.reduce((acc, curr, i) => {
     return acc + curr;
@@ -89,7 +89,7 @@ const calculateBalance = function (movements) {
 };
 calculateBalance(account1.movements);
 
-//---------------------------------------create User Name-----------------------------------
+//---------------------------------------create User Name  using forEach and map method-----------------------------------
 
 const creatUserName = function (account) {
   account.forEach(function (acc) {
@@ -101,6 +101,7 @@ const creatUserName = function (account) {
   });
 };
 creatUserName(accounts);
+
 
 
 
