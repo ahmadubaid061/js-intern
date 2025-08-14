@@ -79,7 +79,28 @@ const displayMovements = function (movements) {
   });
 };
 displayMovements(account1.movements);
+//--------------------------------------------------------Calculate Summary--------------------------------------------------
+const calculateSummary = function (movements) {
+  //all deposits
+  const allincomes = movements
+    .filter((value) => value > 0)
+    .reduce((acc, curr) => acc + curr);
+  labelSumIn.textContent = `${allincomes} €`;
+  //now all withdrawals
 
+  const allOuts = Math.abs(
+    movements.filter((value) => value < 0).reduce((acc, curr) => acc + curr)
+  );
+  labelSumOut.textContent = `${allOuts} €`;
+  //now total interest
+  const totalInterest = movements
+    .filter((value) => value > 0)
+    .map((value) => (value * 1.2) / 100)
+    .filter((value) => value >= 1) //to remove interests less than 1
+    .reduce((acc, curr) => acc + curr);
+  labelSumInterest.textContent = `${totalInterest} €`;
+};
+calculateSummary(account1.movements);
 //---------------------------------------Calculate balance and display it using Reduce Method----------------------------
 const calculateBalance = function (movements) {
   const balance = movements.reduce((acc, curr, i) => {
@@ -101,6 +122,7 @@ const creatUserName = function (account) {
   });
 };
 creatUserName(accounts);
+
 
 
 
