@@ -122,6 +122,30 @@ const creatUserName = function (account) {
   });
 };
 creatUserName(accounts);
+//-------------------------------------------Implementing Login Functionality-----------------------------------------
+
+let currentAccount;
+
+btnLogin.addEventListener("click", function (e) {
+  e.preventDefault();
+  //prevents the pae from reloading which is default behavior of farm submitt button
+
+  currentAccount = accounts.find(
+    (acc) => acc.username === inputLoginUsername.value.trim()
+  );
+  console.log(currentAccount);
+  if (currentAccount?.pin === Number(inputLoginPin.value)) {
+    labelWelcome.textContent = `Welcome Back, ${
+      currentAccount.owner.split(" ")[0]
+    }`;
+    containerApp.style.opacity = 1;
+    inputLoginUsername.value = inputLoginPin.value = "";
+    inputLoginPin.blur();
+    displayMovements(currentAccount.movements);
+    calculateSummary(currentAccount.movements);
+    calculateBalance(currentAccount.movements);
+  }
+});
 
 
 
