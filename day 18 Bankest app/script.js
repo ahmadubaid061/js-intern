@@ -110,7 +110,7 @@ const calculateBalance = function (movements) {
 };
 calculateBalance(account1.movements);
 
-//---------------------------------------create User Name  using forEach and map method-----------------------------------
+//-----------------------------------------------create User Name  using forEach and map method-----------------------------------
 
 const creatUserName = function (account) {
   account.forEach(function (acc) {
@@ -122,7 +122,7 @@ const creatUserName = function (account) {
   });
 };
 creatUserName(accounts);
-//-------------------------------------------Implementing Login Functionality-----------------------------------------
+//-------------------------------------------------Implementing Login Functionality-----------------------------------------
 
 let currentAccount;
 
@@ -134,18 +134,28 @@ btnLogin.addEventListener("click", function (e) {
     (acc) => acc.username === inputLoginUsername.value.toLowerCase().trim()
   );
   
-  if (currentAccount?.pin === Number(inputLoginPin.value)) {
-    labelWelcome.textContent = `Welcome Back, ${
-      currentAccount.owner.split(" ")[0]
-    }`;
+    if (!currentAccount) {
+    //---------------------------------------------------------------------------------- username not found
+    labelWelcome.textContent = "❌ No account found";
+    containerApp.style.opacity = 0;
+  } else if (currentAccount.pin === Number(inputLoginPin.value)) {
+    //---------------------------------------------------------------------------------- login success
+    labelWelcome.textContent = `Welcome Back, ${currentAccount.owner.split(" ")[0]}`;
     containerApp.style.opacity = 1;
+
     inputLoginUsername.value = inputLoginPin.value = "";
     inputLoginPin.blur();
+
     displayMovements(currentAccount.movements);
     calculateSummary(currentAccount.movements);
     calculateBalance(currentAccount.movements);
+  } else {
+    //----------------------------------------------------------------------------------- wrong PIN
+    labelWelcome.textContent = "❌ Incorrect PIN";
+    containerApp.style.opacity = 0;
   }
 });
+
 
 
 
