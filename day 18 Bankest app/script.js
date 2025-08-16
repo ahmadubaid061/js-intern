@@ -102,10 +102,11 @@ const calculateSummary = function (movements) {
 };
 calculateSummary(account1.movements);
 //---------------------------------------Calculate balance and display it using Reduce Method----------------------------
-const calculateBalance = function (movements) {
-  const balance = movements.reduce((acc, curr, i) => {
+const calculateBalance = function (acc) {
+  const balance = acc.movements.reduce((acc, curr, i) => {
     return acc + curr;
   }, 0);
+  acc.balance=balance;
   labelBalance.textContent = `${balance} €`;
 };
 calculateBalance(account1.movements);
@@ -148,13 +149,14 @@ btnLogin.addEventListener("click", function (e) {
 
     displayMovements(currentAccount.movements);
     calculateSummary(currentAccount.movements);
-    calculateBalance(currentAccount.movements);
+    calculateBalance(currentAccount);
   } else {
     //----------------------------------------------------------------------------------- wrong PIN
     labelWelcome.textContent = "❌ Incorrect PIN";
     containerApp.style.opacity = 0;
   }
 });
+
 
 
 
