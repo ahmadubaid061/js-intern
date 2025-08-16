@@ -61,7 +61,7 @@ const inputLoanAmount = document.querySelector(".form__input--loan-amount");
 const inputCloseUsername = document.querySelector(".form__input--user");
 const inputClosePin = document.querySelector(".form__input--pin");
 
-//----------------------------------------------------------------------------------------------------------------------diplay Movements------------------------------------
+//----------------------------------------------------------------------------------------------------------------------diplay Movements--------------------------------
 const displayMovements = function (movements) {
   containerMovements.innerHTML = "";
   movements.forEach(function (mov, i) {
@@ -80,7 +80,7 @@ const displayMovements = function (movements) {
   });
 };
 displayMovements(account1.movements);
-//-------------------------------------------------------------------------------------------------------Calculate Summary--------------------------------------------------
+//-------------------------------------------------------------------------------------------------------Calculate Summary----------------------------------------------
 const calculateSummary = function (account) {
   //all deposits
   const allincomes = account.movements
@@ -102,7 +102,7 @@ const calculateSummary = function (account) {
   labelSumInterest.textContent = `${totalInterest} €`;
 };
 
-//-------------------------------------------------------------------------------------------Calculate balance and display it using Reduce Method----------------------------
+//-------------------------------------------------------------------------------------------Calculate balance and display it using Reduce Method-----------------------
 const calculateBalance = function (acc) {
   const balance = acc.movements.reduce((acc, curr, i) => {
     return acc + curr;
@@ -111,13 +111,13 @@ const calculateBalance = function (acc) {
   labelBalance.textContent = `${acc.balance} €`;
 };
 
-//----------------------------------------------------------------------------------------------------------------------Update UI---------------------------------------------
+//----------------------------------------------------------------------------------------------------------------------Update UI------------------------------------------
 const updateUI = function (acc) {
   displayMovements(acc.movements);
   calculateBalance(acc);
   calculateSummary(acc);
 };
-//-------------------------------------------------------------------------------------------create User Name  using forEach and map method-----------------------------------
+//-------------------------------------------------------------------------------------------create User Name  using forEach and map method----------------------------------
 
 const creatUserName = function (account) {
   account.forEach(function (acc) {
@@ -129,7 +129,7 @@ const creatUserName = function (account) {
   });
 };
 creatUserName(accounts);
-//---------------------------------------------------------------------------------------------------Implementing Login Functionality-----------------------------------------
+//---------------------------------------------------------------------------------------------------Implementing Login Functionality--------------------------------------
 
 let currentAccount;
 
@@ -160,7 +160,7 @@ btnLogin.addEventListener("click", function (e) {
     containerApp.style.opacity = 0;
   }
 });
-//-------------------------------------------------------------------------------------------------------Implementing Transfer amount------------------------------------------
+//-------------------------------------------------------------------------------------------------------Implementing Transfer amount------------------------------------
 btnTransfer.addEventListener("click", function (e) {
   e.preventDefault();
 
@@ -188,6 +188,32 @@ btnTransfer.addEventListener("click", function (e) {
     alert("Not enough money!");
   }
 });
+//--------------------------------------------------------------------------------------------------------Close Account-----------------------------------------------------
+btnClose.addEventListener("click", function (e) {
+  e.preventDefault();
+  const closeName = inputCloseUsername.value.trim();
+  const closePin = Number(inputClosePin.value.trim());
+
+  inputCloseUsername.value = inputClosePin.value = "";
+
+  if (
+    closeName === currentAccount.username &&
+    closePin === currentAccount.pin
+  ) {
+    const index = accounts.findIndex(
+      (acc) => acc.username === currentAccount.username
+    );
+    accounts.splice(index, 1); //deletes the currentaccount from accounts array
+    //hiding UI
+
+    containerApp.style.opacity = 0;
+    labelWelcome.textContent =
+      "Account deleted. Thank you for using our service.";
+  } else {
+    alert("wrong credentials");
+  }
+});
+
 
 
 
