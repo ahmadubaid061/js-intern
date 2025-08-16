@@ -80,27 +80,27 @@ const displayMovements = function (movements) {
 };
 displayMovements(account1.movements);
 //--------------------------------------------------------Calculate Summary--------------------------------------------------
-const calculateSummary = function (movements) {
+const calculateSummary = function (account) {
   //all deposits
-  const allincomes = movements
+  const allincomes = account.movements
     .filter((value) => value > 0)
     .reduce((acc, curr) => acc + curr);
   labelSumIn.textContent = `${allincomes} €`;
   //now all withdrawals
 
   const allOuts = Math.abs(
-    movements.filter((value) => value < 0).reduce((acc, curr) => acc + curr)
+   account.movements.filter((value) => value < 0).reduce((acc, curr) => acc + curr)
   );
   labelSumOut.textContent = `${allOuts} €`;
   //now total interest
-  const totalInterest = movements
+  const totalInterest = account.movements
     .filter((value) => value > 0)
     .map((value) => (value * 1.2) / 100)
     .filter((value) => value >= 1) //to remove interests less than 1
     .reduce((acc, curr) => acc + curr);
   labelSumInterest.textContent = `${totalInterest} €`;
 };
-calculateSummary(account1.movements);
+
 //---------------------------------------Calculate balance and display it using Reduce Method----------------------------
 const calculateBalance = function (acc) {
   const balance = acc.movements.reduce((acc, curr, i) => {
@@ -109,7 +109,7 @@ const calculateBalance = function (acc) {
   acc.balance=balance;
   labelBalance.textContent = `${balance} €`;
 };
-calculateBalance(account1.movements);
+
 
 //-----------------------------------------------create User Name  using forEach and map method-----------------------------------
 
@@ -148,7 +148,7 @@ btnLogin.addEventListener("click", function (e) {
     inputLoginPin.blur();
 
     displayMovements(currentAccount.movements);
-    calculateSummary(currentAccount.movements);
+    calculateSummary(currentAccount);
     calculateBalance(currentAccount);
   } else {
     //----------------------------------------------------------------------------------- wrong PIN
@@ -156,6 +156,7 @@ btnLogin.addEventListener("click", function (e) {
     containerApp.style.opacity = 0;
   }
 });
+
 
 
 
