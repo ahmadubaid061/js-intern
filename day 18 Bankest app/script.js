@@ -60,6 +60,12 @@ const inputTransferAmount = document.querySelector(".form__input--amount");
 const inputLoanAmount = document.querySelector(".form__input--loan-amount");
 const inputCloseUsername = document.querySelector(".form__input--user");
 const inputClosePin = document.querySelector(".form__input--pin");
+//-------------------------------------------------Update UI---------------------------------------------
+const updateUI = function (acc) {
+  displayMovements(acc.movements);
+  calculateBalance(acc);
+  calculateSummary(acc);
+};
 //-----------------------------------------diplay Movements------------------------------------
 const displayMovements = function (movements) {
   containerMovements.innerHTML = "";
@@ -147,15 +153,14 @@ btnLogin.addEventListener("click", function (e) {
     inputLoginUsername.value = inputLoginPin.value = "";
     inputLoginPin.blur();
 
-    displayMovements(currentAccount.movements);
-    calculateSummary(currentAccount);
-    calculateBalance(currentAccount);
+    updateUI(currentAccount);
   } else {
     //----------------------------------------------------------------------------------- wrong PIN
     labelWelcome.textContent = "❌ Incorrect PIN";
     containerApp.style.opacity = 0;
   }
 });
+
 
 
 
