@@ -60,13 +60,8 @@ const inputTransferAmount = document.querySelector(".form__input--amount");
 const inputLoanAmount = document.querySelector(".form__input--loan-amount");
 const inputCloseUsername = document.querySelector(".form__input--user");
 const inputClosePin = document.querySelector(".form__input--pin");
-//-------------------------------------------------Update UI---------------------------------------------
-const updateUI = function (acc) {
-  displayMovements(acc.movements);
-  calculateBalance(acc);
-  calculateSummary(acc);
-};
-//-----------------------------------------diplay Movements------------------------------------
+
+//----------------------------------------------------------------------------------------------------------------------diplay Movements------------------------------------
 const displayMovements = function (movements) {
   containerMovements.innerHTML = "";
   movements.forEach(function (mov, i) {
@@ -85,7 +80,7 @@ const displayMovements = function (movements) {
   });
 };
 displayMovements(account1.movements);
-//--------------------------------------------------------Calculate Summary--------------------------------------------------
+//-------------------------------------------------------------------------------------------------------Calculate Summary--------------------------------------------------
 const calculateSummary = function (account) {
   //all deposits
   const allincomes = account.movements
@@ -107,7 +102,7 @@ const calculateSummary = function (account) {
   labelSumInterest.textContent = `${totalInterest} €`;
 };
 
-//---------------------------------------Calculate balance and display it using Reduce Method----------------------------
+//-------------------------------------------------------------------------------------------Calculate balance and display it using Reduce Method----------------------------
 const calculateBalance = function (acc) {
   const balance = acc.movements.reduce((acc, curr, i) => {
     return acc + curr;
@@ -116,8 +111,13 @@ const calculateBalance = function (acc) {
   labelBalance.textContent = `${acc.balance} €`;
 };
 
-
-//-----------------------------------------------create User Name  using forEach and map method-----------------------------------
+//----------------------------------------------------------------------------------------------------------------------Update UI---------------------------------------------
+const updateUI = function (acc) {
+  displayMovements(acc.movements);
+  calculateBalance(acc);
+  calculateSummary(acc);
+};
+//-------------------------------------------------------------------------------------------create User Name  using forEach and map method-----------------------------------
 
 const creatUserName = function (account) {
   account.forEach(function (acc) {
@@ -129,7 +129,7 @@ const creatUserName = function (account) {
   });
 };
 creatUserName(accounts);
-//-------------------------------------------------Implementing Login Functionality-----------------------------------------
+//---------------------------------------------------------------------------------------------------Implementing Login Functionality-----------------------------------------
 
 let currentAccount;
 
@@ -160,6 +160,35 @@ btnLogin.addEventListener("click", function (e) {
     containerApp.style.opacity = 0;
   }
 });
+//-------------------------------------------------------------------------------------------------------Implementing Transfer amount------------------------------------------
+btnTransfer.addEventListener("click", function (e) {
+  e.preventDefault();
+
+  const amount = Number(inputTransferAmount.value.trim());
+  const reciever = accounts.find(
+    (acc) => acc.username === inputTransferTo.value.toLowerCase().trim()
+  );
+  inputTransferTo.value = ""; //  clear inputs
+  inputTransferAmount.value = "";
+  if (
+    reciever &&
+    amount > 0 &&
+    currentAccount.balance >= amount &&
+    reciever?.username !== currentAccount.username
+  ) {
+    currentAccount.movements.push(-amount);
+    reciever.movements.push(amount);
+
+    updateUI(currentAccount); //  update first
+
+    alert(`${amount} EUR sent to ${reciever.owner}`);
+  } else if (!reciever) {
+    alert("No matching account!");
+  } else if (currentAccount.balance < amount) {
+    alert("Not enough money!");
+  }
+});
+
 
 
 
