@@ -107,7 +107,7 @@ const calculateBalance = function (acc) {
     return acc + curr;
   }, 0);
   acc.balance=balance;
-  labelBalance.textContent = `${balance} €`;
+  labelBalance.textContent = `${acc.balance} €`;
 };
 
 
@@ -156,6 +156,7 @@ btnLogin.addEventListener("click", function (e) {
     containerApp.style.opacity = 0;
   }
 });
+
 
 
 
