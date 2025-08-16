@@ -188,6 +188,28 @@ btnTransfer.addEventListener("click", function (e) {
     alert("Not enough money!");
   }
 });
+//------------------------------------------------------------------------------------------------Request for Loan Amount--------------------------------------------------
+btnLoan.addEventListener("click", function (e) {
+  e.preventDefault();
+  const loanAmount = Number(inputLoanAmount.value.trim());
+  if (
+    loanAmount > 0 &&
+    currentAccount.movements.some((val) => val > loanAmount * 0.1)
+  ) {
+    currentAccount.movements.push(loanAmount);
+    updateUI(currentAccount);
+    inputLoanAmount.value = "";
+    alert(`Congratulations you aregranted with ${loanAmount} EUR loan Amount`);
+  } else if (loanAmount <= 0) {
+    alert("please input a valid Amount");
+    inputLoanAmount.value = "";
+  } else {
+    alert(
+      "Company policy!\nYou are required to have  a deposit in your acount equals atleast 10% of the requested amount"
+    );
+    inputLoanAmount.value = "";           
+  }
+});
 //--------------------------------------------------------------------------------------------------------Close Account-----------------------------------------------------
 btnClose.addEventListener("click", function (e) {
   e.preventDefault();
@@ -213,6 +235,7 @@ btnClose.addEventListener("click", function (e) {
     alert("wrong credentials");
   }
 });
+
 
 
 
