@@ -133,7 +133,7 @@ btnLogin.addEventListener("click", function (e) {
   currentAccount = accounts.find(
     (acc) => acc.username === inputLoginUsername.value.trim()
   );
-  console.log(currentAccount);
+  
   if (currentAccount?.pin === Number(inputLoginPin.value)) {
     labelWelcome.textContent = `Welcome Back, ${
       currentAccount.owner.split(" ")[0]
@@ -146,6 +146,7 @@ btnLogin.addEventListener("click", function (e) {
     calculateBalance(currentAccount.movements);
   }
 });
+
 
 
 
