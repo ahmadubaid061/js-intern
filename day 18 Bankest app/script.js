@@ -131,7 +131,7 @@ btnLogin.addEventListener("click", function (e) {
   //prevents the pae from reloading which is default behavior of farm submitt button
 
   currentAccount = accounts.find(
-    (acc) => acc.username === inputLoginUsername.value.trim()
+    (acc) => acc.username === inputLoginUsername.value.toLowerCase().trim()
   );
   
   if (currentAccount?.pin === Number(inputLoginPin.value)) {
@@ -146,6 +146,7 @@ btnLogin.addEventListener("click", function (e) {
     calculateBalance(currentAccount.movements);
   }
 });
+
 
 
 
