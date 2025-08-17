@@ -211,6 +211,13 @@ btnLoan.addEventListener("click", function (e) {
     inputLoanAmount.value = "";           
   }
 });
+//--------------------------------------------------------------------------------------------------------------------sort Movements------------------------------------------
+let sorted = false;
+btnSort.addEventListener("click", function (e) {
+  e.preventDefault();
+  displayMovements(currentAccount.movements, !sorted);
+  sorted = !sorted;
+});
 //--------------------------------------------------------------------------------------------------------Close Account-----------------------------------------------------
 btnClose.addEventListener("click", function (e) {
   e.preventDefault();
@@ -249,6 +256,7 @@ btnClose.addEventListener("click", function (e) {
 const allBalance = accounts
   .flatMap((account) => account.movements)
   .reduce((acc, curr) => acc + curr, 0);
+
 
 
 
