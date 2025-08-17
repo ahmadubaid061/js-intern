@@ -236,6 +236,19 @@ btnClose.addEventListener("click", function (e) {
   }
 });
 
+//----------------------------------------------------------------------------------------------Total Bank Money------------------------------------------------------------
+// const allBalance = accounts
+//   .map((account) => account.movements)
+//   .flat()
+//   .reduce((acc, curr) => acc + curr, 0);
+// console.log(allBalance);
+
+//Now using flatMap method
+
+const allBalance = accounts
+  .flatMap((account) => account.movements)
+  .reduce((acc, curr) => acc + curr, 0);
+
 
 
 
