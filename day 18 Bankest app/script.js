@@ -62,9 +62,10 @@ const inputCloseUsername = document.querySelector(".form__input--user");
 const inputClosePin = document.querySelector(".form__input--pin");
 
 //----------------------------------------------------------------------------------------------------------------------diplay Movements--------------------------------
-const displayMovements = function (movements) {
+const displayMovements = function (movements,sort=false) {
   containerMovements.innerHTML = "";
-  movements.forEach(function (mov, i) {
+  const movs=sort?movements.slice().sort((a,b)=>a-b):movements;
+  movs.forEach(function (mov, i) {
     const type = mov > 0 ? "deposit" : "withdrawal";
     const html = `
         <div class="movements__row">
@@ -248,6 +249,7 @@ btnClose.addEventListener("click", function (e) {
 const allBalance = accounts
   .flatMap((account) => account.movements)
   .reduce((acc, curr) => acc + curr, 0);
+
 
 
 
