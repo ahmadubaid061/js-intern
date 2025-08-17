@@ -100,7 +100,7 @@ const calculateSummary = function (account) {
     .map((value) => (value * 1.2) / 100)
     .filter((value) => value >= 1) //to remove interests less than 1
     .reduce((acc, curr) => acc + curr);
-  labelSumInterest.textContent = `${totalInterest} €`;
+  labelSumInterest.textContent = `${totalInterest.toFixed(2)} €`;  //the tofixed reduces the long to decimal value to a 2 digits after the decimal point
 };
 
 //-------------------------------------------------------------------------------------------Calculate balance and display it using Reduce Method-----------------------
@@ -256,6 +256,7 @@ btnClose.addEventListener("click", function (e) {
 const allBalance = accounts
   .flatMap((account) => account.movements)
   .reduce((acc, curr) => acc + curr, 0);
+
 
 
 
