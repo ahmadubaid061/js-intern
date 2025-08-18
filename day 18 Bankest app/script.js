@@ -24,19 +24,19 @@ const account1 = {
   locale: "pt-PT",
 };
 
-// const account2 = {
-//   owner: "Bakhti GUll",
-//   movements: [5000, 3400, -150, -790, -3210, -1000, 8500, -30],
-//   interestRate: 1.5,
-//   pin: 2222,
-// };
+const account2 = {
+  owner: "Bakhti GUll",
+  movements: [5000, 3400, -150, -790, -3210, -1000, 8500, -30],
+  interestRate: 1.5,
+  pin: 2222,
+};
 
-// const account3 = {
-//   owner: "Sonia Shah",
-//   movements: [200, -200, 340, -300, -20, 50, 400, -460],
-//   interestRate: 0.7,
-//   pin: 3333,
-// };
+const account3 = {
+  owner: "Sonia Shah",
+  movements: [200, -200, 340, -300, -20, 50, 400, -460],
+  interestRate: 0.7,
+  pin: 3333,
+};
 
 const account4 = {
   owner: "spen Khan",
@@ -97,7 +97,7 @@ const displayMovements = function (movements,sort=false) {
       i + 1
     } ${type}</div>
           <div class="movements__date">3 days ago</div>
-          <div class="movements__value">${mov}</div>
+          <div class="movements__value">${mov.toFixed(2)}</div>
         </div>
         
       `;
@@ -111,13 +111,13 @@ const calculateSummary = function (account) {
   const allincomes = account.movements
     .filter((value) => value > 0)
     .reduce((acc, curr) => acc + curr);
-  labelSumIn.textContent = `${allincomes} €`;
+  labelSumIn.textContent = `${allincomes.toFixed(2)} €`;
   //now all withdrawals
 
-  const allOuts = Math.abs(
+  const allOuts = 
    account.movements.filter((value) => value < 0).reduce((acc, curr) => acc + curr)
-  );
-  labelSumOut.textContent = `${allOuts} €`;
+  ;
+  labelSumOut.textContent = `${allOuts.toFixed(2)} €`;
   //now total interest
   const totalInterest = account.movements
     .filter((value) => value > 0)
@@ -133,7 +133,7 @@ const calculateBalance = function (acc) {
     return acc + curr;
   }, 0);
   acc.balance=balance;
-  labelBalance.textContent = `${acc.balance} €`;
+  labelBalance.textContent = `${acc.balance.toFixed(2)} €`;
 };
 
 //----------------------------------------------------------------------------------------------------------------------Update UI------------------------------------------
@@ -280,6 +280,7 @@ btnClose.addEventListener("click", function (e) {
 const allBalance = accounts
   .flatMap((account) => account.movements)
   .reduce((acc, curr) => acc + curr, 0);
+
 
 
 
