@@ -115,7 +115,7 @@ const calculateSummary = function (account) {
   //now all withdrawals
 
   const allOuts = 
-   account.movements.filter((value) => value < 0).reduce((acc, curr) => acc + curr)
+   Math.abs(account.movements.filter((value) => value < 0).reduce((acc, curr) => acc + curr))
   ;
   labelSumOut.textContent = `${allOuts.toFixed(2)} €`;
   //now total interest
@@ -280,6 +280,7 @@ btnClose.addEventListener("click", function (e) {
 const allBalance = accounts
   .flatMap((account) => account.movements)
   .reduce((acc, curr) => acc + curr, 0);
+
 
 
 
