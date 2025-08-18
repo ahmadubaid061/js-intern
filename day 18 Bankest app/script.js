@@ -216,7 +216,7 @@ btnTransfer.addEventListener("click", function (e) {
 //------------------------------------------------------------------------------------------------Request for Loan Amount--------------------------------------------------
 btnLoan.addEventListener("click", function (e) {
   e.preventDefault();
-  const loanAmount = Number(inputLoanAmount.value.trim());
+  const loanAmount = Math.floor(inputLoanAmount.value);
   if (
     loanAmount > 0 &&
     currentAccount.movements.some((val) => val > loanAmount * 0.1)
@@ -280,6 +280,7 @@ btnClose.addEventListener("click", function (e) {
 const allBalance = accounts
   .flatMap((account) => account.movements)
   .reduce((acc, curr) => acc + curr, 0);
+
 
 
 
