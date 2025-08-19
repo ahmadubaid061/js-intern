@@ -231,11 +231,13 @@ btnTransfer.addEventListener("click", function (e) {
 btnLoan.addEventListener("click", function (e) {
   e.preventDefault();
   const loanAmount = Math.floor(inputLoanAmount.value);
+  const date = new Date();
   if (
     loanAmount > 0 &&
     currentAccount.movements.some((val) => val > loanAmount * 0.1)
   ) {
     currentAccount.movements.push(loanAmount);
+    currentAccount.movementsDates.push(String(date));
     updateUI(currentAccount);
     inputLoanAmount.value = "";
     alert(`Congratulations you aregranted with ${loanAmount} EUR loan Amount`);
@@ -294,6 +296,7 @@ btnClose.addEventListener("click", function (e) {
 const allBalance = accounts
   .flatMap((account) => account.movements)
   .reduce((acc, curr) => acc + curr, 0);
+
 
 
 
