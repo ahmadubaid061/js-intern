@@ -134,6 +134,14 @@ const calculateBalance = function (acc) {
   }, 0);
   acc.balance=balance;
   labelBalance.textContent = `${acc.balance.toFixed(2)} €`;
+  //------------------------------------------------------------adding current date and time
+const now = new Date();
+  const year = now.getFullYear();
+  const month = String(now.getMonth() + 1).padStart(2, "0");
+  const date = String(now.getDate()).padStart(2, "0");
+  const hour = String(now.getHours()).padStart(2, "0");
+  const minutes = String(now.getMinutes()).padStart(2, "0");
+  labelDate.textContent = `${date}/${month}/${year}, ${hour}:${minutes}`;
 };
 
 //----------------------------------------------------------------------------------------------------------------------Update UI------------------------------------------
@@ -280,6 +288,7 @@ btnClose.addEventListener("click", function (e) {
 const allBalance = accounts
   .flatMap((account) => account.movements)
   .reduce((acc, curr) => acc + curr, 0);
+
 
 
 
