@@ -91,12 +91,17 @@ const displayMovements = function (acc,sort=false) {
   const movs=sort?acc.movements.slice().sort((a,b)=>a-b):acc.movements;
   movs.forEach(function (mov, i) {
     const type = mov > 0 ? "deposit" : "withdrawal";
+    const date = new Date(acc.movementsDates[i]);
+    const year = date.getFullYear();
+    const month = String(date.getMonth() + 1).padStart(2, "0");
+    const day = String(date.getDate()).padStart(2, "0");
+    const displayDate = `${day}/${month}/${year}`;
     const html = `
         <div class="movements__row">
           <div class="movements__type movements__type--${type}">${
       i + 1
     } ${type}</div>
-          <div class="movements__date">3 days ago</div>
+          <div class="movements__date">${displayDate}</div>
           <div class="movements__value">${mov.toFixed(2)}</div>
         </div>
         
@@ -104,7 +109,7 @@ const displayMovements = function (acc,sort=false) {
     containerMovements.insertAdjacentHTML("afterbegin", html);
   });
 };
-displayMovements(account1.movements);
+
 //-------------------------------------------------------------------------------------------------------Calculate Summary----------------------------------------------
 const calculateSummary = function (account) {
   //all deposits
@@ -288,6 +293,7 @@ btnClose.addEventListener("click", function (e) {
 const allBalance = accounts
   .flatMap((account) => account.movements)
   .reduce((acc, curr) => acc + curr, 0);
+
 
 
 
