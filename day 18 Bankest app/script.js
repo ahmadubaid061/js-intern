@@ -114,10 +114,8 @@ const displayMovements = function (acc,sort=false) {
   movs.forEach(function (mov, i) {
     const type = mov > 0 ? "deposit" : "withdrawal";
     const date = new Date(acc.movementsDates[i]);
-    const year = date.getFullYear();
-    const month = String(date.getMonth() + 1).padStart(2, "0");
-    const day = String(date.getDate()).padStart(2, "0");
-    const displayDate = `${day}/${month}/${year}`;
+    
+    const displayDate = formatMovementsDates(date);
     const html = `
         <div class="movements__row">
           <div class="movements__type movements__type--${type}">${
@@ -131,7 +129,21 @@ const displayMovements = function (acc,sort=false) {
     containerMovements.insertAdjacentHTML("afterbegin", html);
   });
 };
-
+//------------------------------------------------------------------------------------------------------Format Movement dates-------------------------------------------
+const formatMovementsDates = function (date) {
+  const calcDaysPassed = (date1, date2) =>
+    Math.round(Math.abs(date2 - date1) / (1000 * 60 * 60 * 24));
+  const Dayspassed = calcDaysPassed(new Date(), date);
+  if (Dayspassed === 0) return "Today";
+  if (Dayspassed === 1) return "Yesterday";
+  if (Dayspassed <= 7) return `${Dayspassed} days ago`;
+  else {
+    const year = date.getFullYear();
+    const month = String(date.getMonth() + 1).padStart(2, "0");
+    const day = String(date.getDate()).padStart(2, "0");
+    return `${day}/${month}/${year}`;
+  }
+};
 //-------------------------------------------------------------------------------------------------------Calculate Summary----------------------------------------------
 const calculateSummary = function (account) {
   //all deposits
@@ -320,6 +332,7 @@ btnClose.addEventListener("click", function (e) {
 const allBalance = accounts
   .flatMap((account) => account.movements)
   .reduce((acc, curr) => acc + curr, 0);
+
 
 
 
