@@ -49,9 +49,7 @@ const account4 = {
     "2019-12-25T06:04:23.907Z",
     "2020-01-25T14:18:46.235Z",
     "2020-02-05T16:33:06.386Z",
-    "2020-04-10T14:43:26.374Z",
-    "2020-06-25T18:49:59.371Z",
-    "2020-07-26T12:01:20.894Z",
+   
   ],
   currency: "USD",
   locale: "en-US",
@@ -203,6 +201,7 @@ btnTransfer.addEventListener("click", function (e) {
   e.preventDefault();
 
   const amount = Number(inputTransferAmount.value.trim());
+   const date = new Date();
   const reciever = accounts.find(
     (acc) => acc.username === inputTransferTo.value.toLowerCase().trim()
   );
@@ -215,7 +214,9 @@ btnTransfer.addEventListener("click", function (e) {
     reciever?.username !== currentAccount.username
   ) {
     currentAccount.movements.push(-amount);
+     currentAccount.movementsDates.push(String(date));
     reciever.movements.push(amount);
+    reciever.movementsDates.push(String(date));
 
     updateUI(currentAccount); //  update first
 
@@ -293,6 +294,7 @@ btnClose.addEventListener("click", function (e) {
 const allBalance = accounts
   .flatMap((account) => account.movements)
   .reduce((acc, curr) => acc + curr, 0);
+
 
 
 
