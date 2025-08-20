@@ -116,13 +116,21 @@ const displayMovements = function (acc,sort=false) {
     const date = new Date(acc.movementsDates[i]);
     
     const displayDate = formatMovementsDates(date);
+
+    const local = acc.local;
+    const options = {
+      style: "currency",
+      currency: acc.currency,
+      useGrouping: true,
+    };
+    const formattedMov = new Intl.NumberFormat(local, options).format(mov);
     const html = `
         <div class="movements__row">
           <div class="movements__type movements__type--${type}">${
       i + 1
     } ${type}</div>
           <div class="movements__date">${displayDate}</div>
-          <div class="movements__value">${mov.toFixed(2)}</div>
+          <div class="movements__value">${formattedMov}</div>
         </div>
         
       `;
@@ -352,6 +360,7 @@ btnClose.addEventListener("click", function (e) {
 const allBalance = accounts
   .flatMap((account) => account.movements)
   .reduce((acc, curr) => acc + curr, 0);
+
 
 
 
