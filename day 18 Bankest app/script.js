@@ -117,7 +117,7 @@ const displayMovements = function (acc,sort=false) {
     
     const displayDate = formatMovementsDates(date);
 
-    const local = acc.local;
+    const local = acc.locale;
     const options = {
       style: "currency",
       currency: acc.currency,
@@ -190,7 +190,18 @@ const calculateBalance = function (acc) {
     return acc + curr;
   }, 0);
   acc.balance=balance;
-  labelBalance.textContent = `${acc.balance.toFixed(2)} €`;
+  //-----------------------------------------------------------------------formatting balance
+  const local = acc.locale;
+  const balanceOptions = {
+    style: "currency",
+    currency: acc.currency,
+    useGrouping: true,
+  };
+
+  const formattedbalance = new Intl.NumberFormat(local, balanceOptions).format(
+    acc.balance
+  );
+  labelBalance.textContent = `${formattedbalance}`;
   //------------------------------------------------------------adding current date and time
 const now = new Date();
   // const year = now.getFullYear();
@@ -207,7 +218,7 @@ const now = new Date();
     hour: "numeric",
     minute: "numeric",
   };
-  const local = navigator.language;
+  
   labelDate.textContent = new Intl.DateTimeFormat(local, options).format(now);
 };
 
@@ -360,6 +371,7 @@ btnClose.addEventListener("click", function (e) {
 const allBalance = accounts
   .flatMap((account) => account.movements)
   .reduce((acc, curr) => acc + curr, 0);
+
 
 
 
