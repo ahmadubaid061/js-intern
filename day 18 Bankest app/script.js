@@ -324,11 +324,20 @@ btnLoan.addEventListener("click", function (e) {
     loanAmount > 0 &&
     currentAccount.movements.some((val) => val > loanAmount * 0.1)
   ) {
-    currentAccount.movements.push(loanAmount);
-    currentAccount.movementsDates.push(String(date));
-    updateUI(currentAccount);
+    setTimeout(function () {
+      currentAccount.movements.push(loanAmount);
+      currentAccount.movementsDates.push(String(date));
+      updateUI(currentAccount);
+
+      alert(
+        `Congratulations you aregranted with ${loanAmount} ${currentAccount.currency} loan Amount`
+      );
+      btnLoan.disabled = false;
+      btnLoan.style.cursor = "default";
+    }, 5000);
+    btnLoan.disabled = true;
+    btnLoan.style.cursor = "not-allowed";
     inputLoanAmount.value = "";
-    alert(`Congratulations you aregranted with ${loanAmount}  ${currentAccount.currency} loan Amount`);
   } else if (loanAmount <= 0) {
     alert("please input a valid Amount");
     inputLoanAmount.value = "";
@@ -384,6 +393,7 @@ btnClose.addEventListener("click", function (e) {
 const allBalance = accounts
   .flatMap((account) => account.movements)
   .reduce((acc, curr) => acc + curr, 0);
+
 
 
 
