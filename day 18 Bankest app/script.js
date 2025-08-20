@@ -255,7 +255,7 @@ const creatUserName = function (account) {
 creatUserName(accounts);
 //---------------------------------------------------------------------------------------------------Implementing Login Functionality--------------------------------------
 
-let currentAccount;
+let currentAccount,timer;
 
 btnLogin.addEventListener("click", function (e) {
   e.preventDefault();
@@ -276,7 +276,8 @@ btnLogin.addEventListener("click", function (e) {
 
     inputLoginUsername.value = inputLoginPin.value = "";
     inputLoginPin.blur();
-
+    if (timer) clearInterval(timer);
+    timer = logoutTImer();
     updateUI(currentAccount);
   } else {
     //----------------------------------------------------------------------------------- wrong PIN
@@ -284,6 +285,25 @@ btnLogin.addEventListener("click", function (e) {
     containerApp.style.opacity = 0;
   }
 });
+//-----------------------------------------------------------------------------------------------------------------------setting Logout TImer------------------------------
+const logoutTImer = function () {
+  let time = 300;
+  const tick = function () {
+    const min = String(Math.trunc(time / 60)).padStart(2, "0");
+    const sec = String(time % 60).padStart(2, "0");
+    labelTimer.textContent = `${min}:${sec}`;
+
+    if (time === 0) {
+      clearInterval(timer);
+      labelWelcome.textContent = "Log in to get started";
+      containerApp.style.opacity = 0;
+    }
+    time--;
+  };
+  tick();
+  return setInterval(tick, 1000);
+};
+
 //-------------------------------------------------------------------------------------------------------Implementing Transfer amount------------------------------------
 btnTransfer.addEventListener("click", function (e) {
   e.preventDefault();
@@ -314,6 +334,8 @@ btnTransfer.addEventListener("click", function (e) {
   } else if (currentAccount.balance < amount) {
     alert("Not enough money!");
   }
+  if (timer) clearInterval(timer);
+    timer = logoutTImer();
 });
 //------------------------------------------------------------------------------------------------Request for Loan Amount--------------------------------------------------
 btnLoan.addEventListener("click", function (e) {
@@ -347,6 +369,8 @@ btnLoan.addEventListener("click", function (e) {
     );
     inputLoanAmount.value = "";           
   }
+  if (timer) clearInterval(timer);
+    timer = logoutTImer();
 });
 //--------------------------------------------------------------------------------------------------------------------sort Movements------------------------------------------
 let sorted = false;
@@ -393,6 +417,7 @@ btnClose.addEventListener("click", function (e) {
 const allBalance = accounts
   .flatMap((account) => account.movements)
   .reduce((acc, curr) => acc + curr, 0);
+
 
 
 
