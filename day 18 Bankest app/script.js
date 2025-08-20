@@ -175,12 +175,22 @@ const calculateBalance = function (acc) {
   labelBalance.textContent = `${acc.balance.toFixed(2)} €`;
   //------------------------------------------------------------adding current date and time
 const now = new Date();
-  const year = now.getFullYear();
-  const month = String(now.getMonth() + 1).padStart(2, "0");
-  const date = String(now.getDate()).padStart(2, "0");
-  const hour = String(now.getHours()).padStart(2, "0");
-  const minutes = String(now.getMinutes()).padStart(2, "0");
-  labelDate.textContent = `${date}/${month}/${year}, ${hour}:${minutes}`;
+  // const year = now.getFullYear();
+  // const month = String(now.getMonth() + 1).padStart(2, "0");
+  // const date = String(now.getDate()).padStart(2, "0");
+  // const hour = String(now.getHours()).padStart(2, "0");
+  // const minutes = String(now.getMinutes()).padStart(2, "0");
+  // labelDate.textContent = `${date}/${month}/${year}, ${hour}:${minutes}`;
+  const options = {
+    weekday: "long", //refers to day of the weeek
+    month: "long",
+    year: "numeric",
+    day: "numeric", //refers to date
+    hour: "numeric",
+    minute: "numeric",
+  };
+  const local = navigator.language;
+  labelDate.textContent = new Intl.DateTimeFormat(local, options).format(now);
 };
 
 //----------------------------------------------------------------------------------------------------------------------Update UI------------------------------------------
@@ -332,6 +342,7 @@ btnClose.addEventListener("click", function (e) {
 const allBalance = accounts
   .flatMap((account) => account.movements)
   .reduce((acc, curr) => acc + curr, 0);
+
 
 
 
