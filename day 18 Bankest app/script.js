@@ -167,20 +167,20 @@ const calculateSummary = function (account) {
   //all deposits
   const allincomes = account.movements
     .filter((value) => value > 0)
-    .reduce((acc, curr) => acc + curr);
+    .reduce((acc, curr) => acc + curr,0);
   labelSumIn.textContent = `${allincomes.toFixed(2)} €`;
   //now all withdrawals
 
   const allOuts = 
-   Math.abs(account.movements.filter((value) => value < 0).reduce((acc, curr) => acc + curr))
+   Math.abs(account.movements.filter((value) => value < 0).reduce((acc, curr) => acc + curr,0))
   ;
   labelSumOut.textContent = `${allOuts.toFixed(2)} €`;
   //now total interest
   const totalInterest = account.movements
     .filter((value) => value > 0)
-    .map((value) => (value * 1.2) / 100)
+    .map((value) => (value * acc.interestRate) / 100)
     .filter((value) => value >= 1) //to remove interests less than 1
-    .reduce((acc, curr) => acc + curr);
+    .reduce((acc, curr) => acc + curr,0);
   labelSumInterest.textContent = `${totalInterest.toFixed(2)} €`;  //the tofixed reduces the long to decimal value to a 2 digits after the decimal point
 };
 
@@ -371,6 +371,7 @@ btnClose.addEventListener("click", function (e) {
 const allBalance = accounts
   .flatMap((account) => account.movements)
   .reduce((acc, curr) => acc + curr, 0);
+
 
 
 
