@@ -16,4 +16,26 @@ console.log(now.getHours());
 console.log(now.getMinutes());
 console.log(now.getSeconds());
 
-//==============================================Calculating NO of Days Passed================
+//==============================================Calculating Time Passed================
+//we can calculate no of days passed and hours and minutes and also seconds by deleting the previous date from a new date
+
+const calculateTImePassed = function (date1, date2) {
+  const MilliSecPassed = date2 - date1; //by default it gives milliseconds
+  console.log("Milli Seconds passed are: ", MilliSecPassed);
+  console.log("Seconds passed are: ", MilliSecPassed / 1000);
+  console.log("Minutes Passed are: ", MilliSecPassed / (1000 * 60));
+  console.log("Hours Passed are: ", MilliSecPassed / (1000 * 60 * 60));
+  console.log("Days Passed are: ", MilliSecPassed / (1000 * 60 * 60 * 24));
+  console.log("Weeks Passed are: ", MilliSecPassed / (1000 * 60 * 60 * 24 * 7));
+  console.log(
+    "Months Passed are: ",
+    MilliSecPassed / (1000 * 60 * 60 * 24 * 30)
+  );
+  console.log(
+    "years Passed are: ",
+    MilliSecPassed / (1000 * 60 * 60 * 24 * 365)
+  );
+};
+const initialDate = new Date("2024-07-15T04:27:47.660Z");
+const rightNow = new Date();
+console.log(calculateTImePassed(initialDate, rightNow));
