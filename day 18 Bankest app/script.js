@@ -20,8 +20,8 @@ const account1 = {
     "2025-08-17T23:36:17.929Z",
     "2025-08-18T10:51:36.790Z",
   ],
-  currency: "EUR",
-  locale: "pt-PT",
+  currency: "PKR",
+  locale: navigator.language,
 };
 
 const account2 = {
@@ -39,8 +39,8 @@ const account2 = {
     "2025-08-17T23:36:17.929Z",
     "2025-08-18T10:51:36.790Z",
   ],
-  currency: "EUR",
-  locale: "pt-PT",
+  currency: "PKR",
+  locale: navigator.language,
 };
 
 const account3 = {
@@ -58,8 +58,8 @@ const account3 = {
     "2020-07-11T23:36:17.929Z",
     "2020-07-12T10:51:36.790Z",
   ],
-  currency: "EUR",
-  locale: "pt-PT",
+  currency: "PKR",
+  locale: navigator.language,
 };
 
 const account4 = {
@@ -75,8 +75,8 @@ const account4 = {
     "2020-02-05T16:33:06.386Z",
    
   ],
-  currency: "USD",
-  locale: "en-US",
+  currency: "PKR",
+  locale: navigator.language,
 };
 
 const accounts = [account1, account2, account3, account4];
@@ -185,7 +185,7 @@ const calculateSummary = function (account) {
   //now total interest
   const totalInterest = account.movements
     .filter((value) => value > 0)
-    .map((value) => (value * acc.interestRate) / 100)
+    .map((value) => (value * account.interestRate) / 100)
     .filter((value) => value >= 1) //to remove interests less than 1
     .reduce((acc, curr) => acc + curr,0);
   
@@ -349,11 +349,12 @@ btnLoan.addEventListener("click", function (e) {
     setTimeout(function () {
       currentAccount.movements.push(loanAmount);
       currentAccount.movementsDates.push((date).toISOString());
-      updateUI(currentAccount);
-
-      alert(
+        alert(
         `Congratulations you aregranted with ${loanAmount} ${currentAccount.currency} loan Amount`
       );
+      updateUI(currentAccount);
+
+    
       btnLoan.disabled = false;
       btnLoan.style.cursor = "default";
     }, 5000);
@@ -417,6 +418,7 @@ btnClose.addEventListener("click", function (e) {
 const allBalance = accounts
   .flatMap((account) => account.movements)
   .reduce((acc, curr) => acc + curr, 0);
+
 
 
 
