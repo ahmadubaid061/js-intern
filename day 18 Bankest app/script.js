@@ -106,7 +106,15 @@ const inputTransferAmount = document.querySelector(".form__input--amount");
 const inputLoanAmount = document.querySelector(".form__input--loan-amount");
 const inputCloseUsername = document.querySelector(".form__input--user");
 const inputClosePin = document.querySelector(".form__input--pin");
-
+//----------------------------------------------------------------------------------------------------------------------formatting Balance-----------------------------
+const formatValue = function (value, local, currency) {
+  const options = {
+    style: "currency",
+    currency: currency,
+    useGrouping: true,
+  };
+  return new Intl.NumberFormat(local, options).format(value);
+};
 //----------------------------------------------------------------------------------------------------------------------diplay Movements--------------------------------
 const displayMovements = function (acc,sort=false) {
   containerMovements.innerHTML = "";
@@ -117,13 +125,9 @@ const displayMovements = function (acc,sort=false) {
     
     const displayDate = formatMovementsDates(date);
 
-    const local = acc.locale;
-    const options = {
-      style: "currency",
-      currency: acc.currency,
-      useGrouping: true,
-    };
-    const formattedMov = new Intl.NumberFormat(local, options).format(mov);
+    
+    
+    const formattedMov = formatValue(mov, acc.locale, acc.currency);
     const html = `
         <div class="movements__row">
           <div class="movements__type movements__type--${type}">${
@@ -168,20 +172,29 @@ const calculateSummary = function (account) {
   const allincomes = account.movements
     .filter((value) => value > 0)
     .reduce((acc, curr) => acc + curr,0);
-  labelSumIn.textContent = `${allincomes.toFixed(2)} €`;
+  const formattedIncome = formatValue(allincomes, acc.locale, acc.currency);
+  labelSumIn.textContent = formattedIncome;
+  
   //now all withdrawals
 
   const allOuts = 
    Math.abs(account.movements.filter((value) => value < 0).reduce((acc, curr) => acc + curr,0))
   ;
-  labelSumOut.textContent = `${allOuts.toFixed(2)} €`;
+  const formattedOuts = formatValue(allOuts, acc.locale, acc.currency);
+  labelSumOut.textContent = formattedOuts;
   //now total interest
   const totalInterest = account.movements
     .filter((value) => value > 0)
     .map((value) => (value * acc.interestRate) / 100)
     .filter((value) => value >= 1) //to remove interests less than 1
     .reduce((acc, curr) => acc + curr,0);
-  labelSumInterest.textContent = `${totalInterest.toFixed(2)} €`;  //the tofixed reduces the long to decimal value to a 2 digits after the decimal point
+  
+  const formattedInterest = formatValue(
+    totalInterest,
+    acc.locale,
+    acc.currency
+  );
+  labelSumInterest.textContent = formattedInterest;  //the tofixed reduces the long to decimal value to a 2 digits after the decimal point
 };
 
 //-------------------------------------------------------------------------------------------Calculate balance and display it using Reduce Method-----------------------
@@ -371,6 +384,7 @@ btnClose.addEventListener("click", function (e) {
 const allBalance = accounts
   .flatMap((account) => account.movements)
   .reduce((acc, curr) => acc + curr, 0);
+
 
 
 
