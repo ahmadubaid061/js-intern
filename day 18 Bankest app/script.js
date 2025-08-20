@@ -138,10 +138,20 @@ const formatMovementsDates = function (date) {
   if (Dayspassed === 1) return "Yesterday";
   if (Dayspassed <= 7) return `${Dayspassed} days ago`;
   else {
-    const year = date.getFullYear();
-    const month = String(date.getMonth() + 1).padStart(2, "0");
-    const day = String(date.getDate()).padStart(2, "0");
-    return `${day}/${month}/${year}`;
+    // const year = date.getFullYear();
+    // const month = String(date.getMonth() + 1).padStart(2, "0");
+    // const day = String(date.getDate()).padStart(2, "0");
+    // return `${day}/${month}/${year}`;
+    const local = navigator.language;
+    const options = {
+      // weekday: "long", //refers to day of the weeek
+      month: "long",
+      year: "numeric",
+      day: "numeric", //refers to date
+      // hour: "numeric",
+      // minute: "numeric",
+    };
+    return new Intl.DateTimeFormat(local, options).format(date);   //api which format dates according to country language
   }
 };
 //-------------------------------------------------------------------------------------------------------Calculate Summary----------------------------------------------
@@ -342,6 +352,7 @@ btnClose.addEventListener("click", function (e) {
 const allBalance = accounts
   .flatMap((account) => account.movements)
   .reduce((acc, curr) => acc + curr, 0);
+
 
 
 
