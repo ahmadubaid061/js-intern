@@ -172,7 +172,7 @@ const calculateSummary = function (account) {
   const allincomes = account.movements
     .filter((value) => value > 0)
     .reduce((acc, curr) => acc + curr,0);
-  const formattedIncome = formatValue(allincomes, acc.locale, acc.currency);
+  const formattedIncome = formatValue(allincomes, account.locale, account.currency);
   labelSumIn.textContent = formattedIncome;
   
   //now all withdrawals
@@ -180,7 +180,7 @@ const calculateSummary = function (account) {
   const allOuts = 
    Math.abs(account.movements.filter((value) => value < 0).reduce((acc, curr) => acc + curr,0))
   ;
-  const formattedOuts = formatValue(allOuts, acc.locale, acc.currency);
+  const formattedOuts = formatValue(allOuts, account.locale, account.currency);
   labelSumOut.textContent = formattedOuts;
   //now total interest
   const totalInterest = account.movements
@@ -191,8 +191,8 @@ const calculateSummary = function (account) {
   
   const formattedInterest = formatValue(
     totalInterest,
-    acc.locale,
-    acc.currency
+    account.locale,
+    account.currency
   );
   labelSumInterest.textContent = formattedInterest;  //the tofixed reduces the long to decimal value to a 2 digits after the decimal point
 };
@@ -322,9 +322,9 @@ btnTransfer.addEventListener("click", function (e) {
     reciever?.username !== currentAccount.username
   ) {
     currentAccount.movements.push(-amount);
-     currentAccount.movementsDates.push(String(date));
+     currentAccount.movementsDates.push((date).toISOString());
     reciever.movements.push(amount);
-    reciever.movementsDates.push(String(date));
+    reciever.movementsDates.push((date).toISOString());
 
     updateUI(currentAccount); //  update first
 
@@ -348,7 +348,7 @@ btnLoan.addEventListener("click", function (e) {
   ) {
     setTimeout(function () {
       currentAccount.movements.push(loanAmount);
-      currentAccount.movementsDates.push(String(date));
+      currentAccount.movementsDates.push((date).toISOString());
       updateUI(currentAccount);
 
       alert(
@@ -417,6 +417,7 @@ btnClose.addEventListener("click", function (e) {
 const allBalance = accounts
   .flatMap((account) => account.movements)
   .reduce((acc, curr) => acc + curr, 0);
+
 
 
 
