@@ -308,7 +308,7 @@ btnTransfer.addEventListener("click", function (e) {
 
     updateUI(currentAccount); //  update first
 
-    alert(`${amount} EUR sent to ${reciever.owner}`);
+    alert(`${amount} ${currentAccount.currency} sent to ${reciever.owner}`);
   } else if (!reciever) {
     alert("No matching account!");
   } else if (currentAccount.balance < amount) {
@@ -328,7 +328,7 @@ btnLoan.addEventListener("click", function (e) {
     currentAccount.movementsDates.push(String(date));
     updateUI(currentAccount);
     inputLoanAmount.value = "";
-    alert(`Congratulations you aregranted with ${loanAmount} EUR loan Amount`);
+    alert(`Congratulations you aregranted with ${loanAmount}  ${currentAccount.currency} loan Amount`);
   } else if (loanAmount <= 0) {
     alert("please input a valid Amount");
     inputLoanAmount.value = "";
@@ -384,6 +384,7 @@ btnClose.addEventListener("click", function (e) {
 const allBalance = accounts
   .flatMap((account) => account.movements)
   .reduce((acc, curr) => acc + curr, 0);
+
 
 
 
