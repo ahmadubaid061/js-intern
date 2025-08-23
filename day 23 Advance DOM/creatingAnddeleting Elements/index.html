@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=\, initial-scale=1.0" />
+    <title>Practicing Advance dom</title>
+    <style>
+      body {
+        background-color: aquamarine;
+        padding: 10%;
+        padding-top: 2%;
+        display: grid;
+        grid-template-columns: 1fr;
+        row-gap: 20px;
+      }
+      header {
+        background-color: aqua;
+        width: 80%;
+
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        justify-self: center;
+        text-align: center;
+        border: 2px solid cadetblue;
+      }
+      main {
+        background-color: cadetblue;
+        width: 80%;
+        min-height: 400px;
+        justify-self: center;
+        font-size: 30px;
+        padding: 5%;
+        color: white;
+        display: grid;
+        grid-template-columns: 1fr;
+      }
+      .btns {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+      }
+      ul {
+        transition: transform 0.5s;
+      }
+      button {
+        padding: 10px;
+        border: 1px solid black;
+        border-radius: 10px;
+        background-color: aquamarine;
+        color: black;
+        cursor: pointer;
+        height: fit-content;
+      }
+      .buttons {
+        height: fit-content;
+        padding: 10px;
+      }
+      button:hover {
+        background-color: cadetblue;
+        color: white;
+        transform: scale(1.5);
+      }
+      .adjacentBtns {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+      }
+      .initial--hidden {
+        display: none;
+      }
+      .hidden {
+        display: none;
+      }
+      /* the below element will be inserted using inserAdjacentHTML method*/
+      #adjacentHtml {
+        justify-self: center;
+        justify-content: center;
+        border: 1px solid black;
+        margin: 10px;
+        background-color: rgb(52, 133, 14);
+        color: aliceblue;
+        padding: 10px;
+      }
+
+      .create--hidden {
+        display: none;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <h1>ADVANCE DOM</h1>
+      <ul class="btns">
+        <button id="html">insertAdjacentHtml</button>
+        <button id="create">createElements</button>
+        <button id="delete">Delete Header</button>
+      </ul>
+    </header>
+    <main class="initial initial--hidden">
+      <ul>
+        In this page you will be practicing;
+        <li>create DOm elements,</li>
+        <li>document.insertAdjacentHtml,</li>
+        <li>append and prepend Dom elements</li>
+        <li>after vs before</li>
+        <li>Delete Dom Elements ,</li>
+      </ul>
+    </main>
+
+    <main class="Adjacent hidden">
+      <div>
+        <h2>
+          here you will see how different insertAdjacentHtml properties work
+        </h2>
+      </div>
+      <ul class="adjacentBtns">
+        <button id="beforeStart">before begin</button
+        ><button id="afterStaRT">After begin</button
+        ><button id="beforeEnd">before end</button
+        ><button id="afterEnd">after end</button>
+      </ul>
+    </main>
+    <main class="create create--hidden">
+      <div>
+        <h2>here you will see how append and prepend properties work</h2>
+      </div>
+      <ul class="adjacentBtns">
+        <button id="Prepend">Prepend</button
+        ><button id="Apend">Append</button>
+        <button id="after">after</button
+        ><button id="before">before</button>
+      </ul>
+    </main>
+    <script src="script.js"></script>
+  </body>
+</html>
