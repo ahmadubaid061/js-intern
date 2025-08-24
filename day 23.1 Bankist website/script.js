@@ -39,9 +39,10 @@ document.querySelector("header").append(message);
 
 //-----------------------------------now removing the cookie message by click
 
-document.querySelector('btn--close-cookie').addEventListener('click',function(){
+document.querySelector('.btn--close-cookie').addEventListener('click',function(){
   message.remove();
 })
+
 
 
 
