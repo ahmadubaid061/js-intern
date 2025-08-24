@@ -1,6 +1,6 @@
 "use strict";
 
-//-----------------------------------------------------------Modal window----------------------------------
+//-------------------------------------------------------------------------------------------------------------------------Modal window----------------------------------
 
 const modal = document.querySelector(".modal");
 const overlay = document.querySelector(".overlay");
@@ -29,3 +29,23 @@ document.addEventListener("keydown", function (e) {
     closeModal();
   }
 });
+//-------------------------------------------------------------------------------------------------------------------creatiing Element   (cookie-message)-----------------
+const message=document.createElement('div');
+message.classList.add('cookie-message');
+message.innerHTML="we use cookie for improved functionality <button class='btn btn--close-cookie'>Got it!</button>";
+
+//----------------------------------appending the message element to header
+document.querySelector("header").append(message);
+
+//-----------------------------------now removing the cookie message by click
+
+document.querySelector('btn--close-cookie').addEventListener('click',function(){
+  message.remove();
+})
+
+
+
+
+
+
+
