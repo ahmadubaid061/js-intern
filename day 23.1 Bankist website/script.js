@@ -42,6 +42,13 @@ document.querySelector("header").append(message);
 document.querySelector('.btn--close-cookie').addEventListener('click',function(){
   message.remove();
 })
+//-----------------------------------------------------------------------------------------------------------------Implementing Smooth scroll-----------------------------
+const buttonScrollto = document.querySelector(".btn--scroll-to");
+const section1 = document.querySelector("#section--1");
+buttonScrollto.addEventListener("click", function () {
+  section1.scrollIntoView({ behavior: "smooth" });
+});
+
 
 
 
