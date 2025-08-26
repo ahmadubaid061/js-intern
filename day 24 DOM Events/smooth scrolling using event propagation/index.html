@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Smooth SCrolling Practice</title>
+    <style>
+      body {
+        background-color: aquamarine;
+        text-align: center;
+      }
+      header {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        min-height: 10vh;
+      }
+      ul {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+        text-align: center;
+        padding: 20px;
+      }
+      a {
+        cursor: pointer;
+        background-color: blue;
+        color: white;
+        padding: 10px;
+        border-radius: 10px;
+      }
+      div {
+        min-height: 70vh;
+        border: 1px solid black;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+      }
+      main {
+        display: flex;
+        flex-direction: column;
+
+        gap: 20px;
+      }
+      section {
+        min-height: 90vh;
+        border: 1px solid black;
+        display: flex;
+        flex-direction: column;
+
+        justify-content: center;
+        font-size: 30px;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <ul class="nav-menu">
+        <a class="nav-link" href="#section--1">section1</a
+        ><a class="nav-link" href="#section--2">section2</a
+        ><a class="nav-link" href="#section--3">section3</a>
+      </ul>
+    </header>
+    <main>
+      <div>
+        <h1>Welcome to event propagation and smooth scrolling practice</h1>
+      </div>
+      <section id="section--1">
+        <h1>Section 1</h1>
+        <span><a href="#top">move to top</a></span>
+      </section>
+      <section id="section--2">
+        <h1>Section 2</h1>
+        <span><a href="#top">move to top</a></span>
+      </section>
+      <section id="section--3">
+        <h1>Section 3</h1>
+        <span><a href="#top">move to top</a></span>
+      </section>
+    </main>
+    <script src="sscript.js"></script>
+  </body>
+</html>
