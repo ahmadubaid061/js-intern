@@ -49,6 +49,35 @@ buttonScrollto.addEventListener("click", function () {
   section1.scrollIntoView({ behavior: "smooth" });
 });
 
+//----------------------------------------------------------------------------------------------------------------implementing tabbed operations-------------------------
+const tabs = document.querySelectorAll(".operations__tab");
+console.log(tabs);
+const tabContainer = document.querySelector(".operations__tab-container");
+console.log(tabContainer);
+const tabcontent = document.querySelectorAll(".operations__content");
+console.log(tabcontent);
+//attaching event to tabcontainer(parent element)using event delegation instead of foreach method
+tabContainer.addEventListener("click", function (e) {
+  const clickedBtn = e.target.closest(".operations__tab");
+  //checking if we clicked on a button or just empty space
+  if (!clickedBtn) return;
+  //clicked is a button
+  //first remove active class from all the buttons
+  tabs.forEach((t) => t.classList.remove("operations__tab--active"));
+  //now add the active class to the clcicked button
+  clickedBtn.classList.add("operations__tab--active");
+
+  //===========================================================================Now changing the content below the buttons===========
+  //-- class="operations__content operations__content--1 operations__content--active"
+  //we have to change the operation__content--{dynamically } and attach the active vclass to the clicked one
+  tabcontent.forEach((content) =>
+    content.classList.remove("operations__content--active")
+  );
+  console.log(clickedBtn.dataset.tab);
+  document
+    .querySelector(`.operations__content--${clickedBtn.dataset.tab}`)
+    .classList.add("operations__content--active");
+});
 
 
 
