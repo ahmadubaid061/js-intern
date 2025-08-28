@@ -79,6 +79,37 @@ tabContainer.addEventListener("click", function (e) {
     .classList.add("operations__content--active");
 });
 
+//-----------------------------------------------------------------------------------------------Implementing nav btns fading on hover-------------------------------
+const navContainer = document.querySelector(".nav");
+//--------------mouse enters
+
+navContainer.addEventListener("mouseover", function (e) {
+  if (e.target.classList.contains("nav__link")) {
+    const hovered = e.target;
+    console.log(hovered);
+    const siblings = hovered.closest(".nav").querySelectorAll(".nav__link");
+    console.log(siblings);
+    const logo = hovered.closest(".nav").querySelector("img");
+    siblings.forEach((item) => {
+      if (item !== hovered) item.style.opacity = 0.5;
+    });
+    logo.style.opacity = 0.5;
+  }
+});
+//-----------------mouse leaves
+navContainer.addEventListener("mouseout", function (e) {
+  if (e.target.classList.contains("nav__link")) {
+    const hovered = e.target;
+    console.log(hovered);
+    const siblings = hovered.closest(".nav").querySelectorAll(".nav__link");
+    console.log(siblings);
+    const logo = hovered.closest(".nav").querySelector("img");
+    siblings.forEach((item) => {
+      if (item !== hovered) item.style.opacity = 1;
+    });
+    logo.style.opacity = 1;
+  }
+});
 
 
 
