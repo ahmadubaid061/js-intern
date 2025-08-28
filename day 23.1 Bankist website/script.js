@@ -80,10 +80,41 @@ tabContainer.addEventListener("click", function (e) {
 });
 
 //-----------------------------------------------------------------------------------------------Implementing nav btns fading on hover-------------------------------
-const navContainer = document.querySelector(".nav");
-//--------------mouse enters
+// const navContainer = document.querySelector(".nav");
+// //--------------mouse enters
 
-navContainer.addEventListener("mouseover", function (e) {
+// navContainer.addEventListener("mouseover", function (e) {
+//   if (e.target.classList.contains("nav__link")) {
+//     const hovered = e.target;
+//     console.log(hovered);
+//     const siblings = hovered.closest(".nav").querySelectorAll(".nav__link");
+//     console.log(siblings);
+//     const logo = hovered.closest(".nav").querySelector("img");
+//     siblings.forEach((item) => {
+//       if (item !== hovered) item.style.opacity = 0.5;
+//     });
+//     logo.style.opacity = 0.5;
+//   }
+// });
+// //-----------------mouse leaves
+// navContainer.addEventListener("mouseout", function (e) {
+//   if (e.target.classList.contains("nav__link")) {
+//     const hovered = e.target;
+//     console.log(hovered);
+//     const siblings = hovered.closest(".nav").querySelectorAll(".nav__link");
+//     console.log(siblings);
+//     const logo = hovered.closest(".nav").querySelector("img");
+//     siblings.forEach((item) => {
+//       if (item !== hovered) item.style.opacity = 1;
+//     });
+//     logo.style.opacity = 1;
+//   }
+// });
+ //------------------------------------there was so much repeatition so i needa sepaerate function handle varibales and effects for both events
+
+const navContainer = document.querySelector(".nav");
+//------------------the function
+const handleHover = function (e, opacity) {
   if (e.target.classList.contains("nav__link")) {
     const hovered = e.target;
     console.log(hovered);
@@ -91,24 +122,18 @@ navContainer.addEventListener("mouseover", function (e) {
     console.log(siblings);
     const logo = hovered.closest(".nav").querySelector("img");
     siblings.forEach((item) => {
-      if (item !== hovered) item.style.opacity = 0.5;
+      if (item !== hovered) item.style.opacity = opacity;
     });
-    logo.style.opacity = 0.5;
+    logo.style.opacity = opacity;
   }
+};
+//--------------mouse enters
+navContainer.addEventListener("mouseover", function (e) {
+  handleHover(e, 0.5);
 });
 //-----------------mouse leaves
 navContainer.addEventListener("mouseout", function (e) {
-  if (e.target.classList.contains("nav__link")) {
-    const hovered = e.target;
-    console.log(hovered);
-    const siblings = hovered.closest(".nav").querySelectorAll(".nav__link");
-    console.log(siblings);
-    const logo = hovered.closest(".nav").querySelector("img");
-    siblings.forEach((item) => {
-      if (item !== hovered) item.style.opacity = 1;
-    });
-    logo.style.opacity = 1;
-  }
+  handleHover(e, 1);
 });
 
 
