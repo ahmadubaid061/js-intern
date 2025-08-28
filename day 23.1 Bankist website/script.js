@@ -110,7 +110,7 @@ tabContainer.addEventListener("click", function (e) {
 //     logo.style.opacity = 1;
 //   }
 // });
- //------------------------------------there was so much repeatition so i needa sepaerate function handle varibales and effects for both events
+ //------------------------------------there was so much repeatition so i need seperate function handle varibales and effects for both events
 
 const navContainer = document.querySelector(".nav");
 //------------------the function
@@ -135,6 +135,7 @@ navContainer.addEventListener("mouseover", function (e) {
 navContainer.addEventListener("mouseout", function (e) {
   handleHover(e, 1);
 });
+
 
 
 
