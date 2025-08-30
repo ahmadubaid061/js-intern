@@ -42,6 +42,18 @@ document.querySelector("header").append(message);
 document.querySelector('.btn--close-cookie').addEventListener('click',function(){
   message.remove();
 })
+//---------------------------------------------------------------------------------------------------------------implementing sticky navigationbar--------------------------
+window.addEventListener("scroll", function () {
+  const startPoint = section1.getBoundingClientRect();
+  console.log(startPoint);
+  console.log("this.top", startPoint.top);
+  console.log("window.scroll", this.scrollY);
+  if (this.scrollY >= startPoint.top) {
+    navContainer.classList.add("sticky");
+  } else {
+    navContainer.classList.remove("sticky");
+  }
+});
 //-----------------------------------------------------------------------------------------------------------------Implementing Smooth scroll-----------------------------
 const buttonScrollto = document.querySelector(".btn--scroll-to");
 const section1 = document.querySelector("#section--1");
@@ -158,6 +170,7 @@ navContainer.addEventListener("mouseover", handleHover.bind(0.5));
 //the bind method will return a copy of the handleHover function with an additional argument for opacity
 //-----------------mouse leaves
 navContainer.addEventListener("mouseout", handleHover.bind(1));
+
 
 
 
