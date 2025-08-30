@@ -112,9 +112,34 @@ tabContainer.addEventListener("click", function (e) {
 // });
  //------------------------------------there was so much repeatition so i need seperate function handle varibales and effects for both events
 
+// const navContainer = document.querySelector(".nav");
+// //------------------the function
+// const handleHover = function (e, opacity) {
+//   if (e.target.classList.contains("nav__link")) {
+//     const hovered = e.target;
+//     console.log(hovered);
+//     const siblings = hovered.closest(".nav").querySelectorAll(".nav__link");
+//     console.log(siblings);
+//     const logo = hovered.closest(".nav").querySelector("img");
+//     siblings.forEach((item) => {
+//       if (item !== hovered) item.style.opacity = opacity;
+//     });
+//     logo.style.opacity = opacity;
+//   }
+// };
+// //--------------mouse enters
+// navContainer.addEventListener("mouseover", function (e) {
+//   handleHover(e, 0.5);
+// });
+// //-----------------mouse leaves
+// navContainer.addEventListener("mouseout", function (e) {
+//   handleHover(e, 1);
+// });
+//-------------------------------------------------------------Now doing the above process using bind method
+
 const navContainer = document.querySelector(".nav");
-//------------------the function
-const handleHover = function (e, opacity) {
+
+const handleHover = function (e) {
   if (e.target.classList.contains("nav__link")) {
     const hovered = e.target;
     console.log(hovered);
@@ -122,21 +147,17 @@ const handleHover = function (e, opacity) {
     console.log(siblings);
     const logo = hovered.closest(".nav").querySelector("img");
     siblings.forEach((item) => {
-      if (item !== hovered) item.style.opacity = opacity;
+      if (item !== hovered) item.style.opacity = this;
+      //the this keyword is the opacity value defined inside bind method
     });
-    logo.style.opacity = opacity;
+    logo.style.opacity = this;
   }
 };
 //--------------mouse enters
-navContainer.addEventListener("mouseover", function (e) {
-  handleHover(e, 0.5);
-});
+navContainer.addEventListener("mouseover", handleHover.bind(0.5));
+//the bind method will return a copy of the handleHover function with an additional argument for opacity
 //-----------------mouse leaves
-navContainer.addEventListener("mouseout", function (e) {
-  handleHover(e, 1);
-});
-
-
+navContainer.addEventListener("mouseout", handleHover.bind(1));
 
 
 
