@@ -43,17 +43,39 @@ document.querySelector('.btn--close-cookie').addEventListener('click',function()
   message.remove();
 })
 //---------------------------------------------------------------------------------------------------------------implementing sticky navigationbar--------------------------
-window.addEventListener("scroll", function () {
-  const startPoint = section1.getBoundingClientRect();
-  console.log(startPoint);
-  console.log("this.top", startPoint.top);
-  console.log("window.scroll", this.scrollY);
-  if (this.scrollY >= startPoint.top) {
-    navContainer.classList.add("sticky");
-  } else {
-    navContainer.classList.remove("sticky");
-  }
-});
+// window.addEventListener("scroll", function () {
+//   const startPoint = section1.getBoundingClientRect();
+//   console.log(startPoint);
+//   console.log("this.top", startPoint.top);
+//   console.log("window.scroll", this.scrollY);
+//   if (this.scrollY >= startPoint.top) {
+//     navContainer.classList.add("sticky");
+//   } else {
+//     navContainer.classList.remove("sticky");
+//   }
+// });
+//------------------------------------------------------------------------------Sticky navigation using intersectionObserver API-
+const headerCallback = function (entries, headerObserver) {
+  entries.forEach((entry) => {
+    if (!entry.isIntersecting) {
+      navContainer.classList.add("sticky");
+    } else {
+      navContainer.classList.remove("sticky");
+    }
+  });
+};
+
+const headerObserverOptions = {
+  root: null,
+  threshold: 0,
+};
+
+const headerObserver = new IntersectionObserver(
+  headerCallback,
+  headerObserverOptions
+);
+
+headerObserver.observe(header);
 //-----------------------------------------------------------------------------------------------------------------Implementing Smooth scroll-----------------------------
 const buttonScrollto = document.querySelector(".btn--scroll-to");
 const section1 = document.querySelector("#section--1");
@@ -170,6 +192,55 @@ navContainer.addEventListener("mouseover", handleHover.bind(0.5));
 //the bind method will return a copy of the handleHover function with an additional argument for opacity
 //-----------------mouse leaves
 navContainer.addEventListener("mouseout", handleHover.bind(1));
+//---------------------------------------------------------------------------------------------------------------revieling sections on scrolling-----------------------------
+//-------------using intersectionobserver API
+const allsections = document.querySelectorAll(".section--hidden");
+const sectionCallback = function (entries, sectionObserver) {
+  const [entry] = entries; //destructuring entries to get the first one
+  if (!entry.isIntersecting) return;
+
+  entry.target.classList.remove("section--hidden");
+  observe.unobserve(entry.target);
+};
+const sectionObserverOptions = {
+  root: null,
+  threshold: 0.2,
+};
+
+const sectionObserver = new IntersectionObserver(
+  sectionCallback,
+  sectionObserverOptions
+);
+
+allsections.forEach((section) => {
+  sectionObserver.observe(section);
+});
+
+//--------------------------------------------------------------------------------------------------------Implementing lazy loading images-----------------------------------
+const imgs = document.querySelectorAll("img[data-src]");
+const imgsCallback = function (entries, imgsObserver) {
+  const [entry] = entries;
+  if (!entry.isIntersecting) return;
+
+  entry.target.src = entry.target.dataset.src;
+  entry.target.addEventListener("load", function () {
+    this.classList.remove("lazy-img");
+  });
+  imgsObserver.unobserve(entry.target);
+};
+const imgsObserverOptions = {
+  root: null,
+  threshold: 0.2,
+};
+const imgsObserver = new IntersectionObserver(
+  imgsCallback,
+  imgsObserverOptions
+);
+
+imgs.forEach((img) => {
+  imgsObserver.observe(img);
+});
+
 
 
 
