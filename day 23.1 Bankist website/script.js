@@ -1,5 +1,7 @@
 "use strict";
-
+const header = document.querySelector(".header");
+const section1 = document.querySelector("#section--1");
+const navContainer = document.querySelector(".nav");
 //-------------------------------------------------------------------------------------------------------------------------Modal window----------------------------------
 
 const modal = document.querySelector(".modal");
@@ -78,7 +80,7 @@ const headerObserver = new IntersectionObserver(
 headerObserver.observe(header);
 //-----------------------------------------------------------------------------------------------------------------Implementing Smooth scroll-----------------------------
 const buttonScrollto = document.querySelector(".btn--scroll-to");
-const section1 = document.querySelector("#section--1");
+
 buttonScrollto.addEventListener("click", function () {
   section1.scrollIntoView({ behavior: "smooth" });
 });
@@ -240,6 +242,7 @@ const imgsObserver = new IntersectionObserver(
 imgs.forEach((img) => {
   imgsObserver.observe(img);
 });
+
 
 
 
