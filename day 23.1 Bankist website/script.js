@@ -242,43 +242,97 @@ const imgsObserver = new IntersectionObserver(
 imgs.forEach((img) => {
   imgsObserver.observe(img);
 });
-//-----------------------------------------------------------------------------------------------------------slider Implementation------------------------------------------
-const slider = document.querySelector(".slider");
-const slides = document.querySelectorAll(".slide");
-const btn_left = document.querySelector(".slider__btn--left");
-const btn_right = document.querySelector(".slider__btn--right");
+//------------------------------------------------------------------------------------------------------------------slider Implementation----------------------------------
+const activateSlider = function () {
+  const slider = document.querySelector(".slider");
+  const slides = document.querySelectorAll(".slide");
+  const btn_left = document.querySelector(".slider__btn--left");
+  const btn_right = document.querySelector(".slider__btn--right");
+  const dotContainer = document.querySelector(".dots");
+  const dots = document.querySelectorAll(".dots__dot");
+  let curSlide = 0;
+  let maxSlide = slides.length;
 
-let curSlide = 0;
-let maxSlide = slides.length;
+  //funciton for creating the dots
+  const createDots = function () {
+    slides.forEach(function (_, i) {
+      dotContainer.insertAdjacentHTML(
+        "beforeend",
+        `<button class="dots__dot" data-slide="${i}"></button>`
+      );
+    });
+  };
 
-const goTOslide = function (slide) {
-  slides.forEach((s, i) => {
-    s.style.transform = `translateX(${(i - slide) * 100}%)`;
+  const goTOslide = function (slide) {
+    slides.forEach((s, i) => {
+      s.style.transform = `translateX(${(i - slide) * 100}%)`;
+    });
+  };
+
+  //activate dot
+  const activateDot = function (slide) {
+    document
+      .querySelectorAll(".dots__dot")
+      .forEach((dot) => dot.classList.remove("dots__dot--active"));
+    document
+      .querySelector(`.dots__dot[data-slide='${slide}']`)
+      .classList.add("dots__dot--active");
+  };
+
+  //initial condition
+  const init = function () {
+    createDots();
+    goTOslide(0);
+    activateDot(0);
+  };
+  init();
+  //next slide
+  const nextSlide = function () {
+    if (curSlide === maxSlide - 1) {
+      curSlide = 0;
+    } else {
+      curSlide++;
+    }
+    goTOslide(curSlide);
+    activateDot(curSlide);
+  };
+  //previous slide
+  const PrevSlide = function () {
+    if (curSlide === 0) {
+      curSlide = maxSlide - 1;
+    } else {
+      curSlide--;
+    }
+    goTOslide(curSlide);
+    activateDot(curSlide);
+  };
+  //---------------------------------go to next slide using btn--right
+
+  btn_right.addEventListener("click", nextSlide);
+
+  //----------------------------------go to previous slide using btn--left
+
+  btn_left.addEventListener("click", PrevSlide);
+  //--------------------------------chaning slides with keyboard btns press
+
+  document.addEventListener("keydown", function (e) {
+    if (e.key === "ArrowLeft") {
+      PrevSlide();
+    } else if (e.key === "ArrowRight") {
+      nextSlide();
+    }
+  });
+  //--------------------------------change slide by clicking on the dots
+  dotContainer.addEventListener("click", function (e) {
+    if (e.target.classList.contains("dots__dot")) {
+      const { slide } = e.target.dataset;
+      goTOslide(slide);
+      activateDot(slide);
+    }
   });
 };
-goTOslide(0);
+activateSlider();
 
-//go to next slide
-
-btn_right.addEventListener("click", function () {
-  if (curSlide === maxSlide - 1) {
-    curSlide = 0;
-  } else {
-    curSlide++;
-  }
-  goTOslide(curSlide);
-});
-
-//go to previous slide
-
-btn_left.addEventListener("click", function () {
-  if (curSlide === 0) {
-    curSlide = maxSlide - 1;
-  } else {
-    curSlide--;
-  }
-  goTOslide(curSlide);
-});
 
 
 
