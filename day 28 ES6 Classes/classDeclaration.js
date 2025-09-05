@@ -24,12 +24,13 @@ class PersonClass {
 const person1 = new PersonClass("ubaid", 50);
 person1.result();
 //the method inside a class are always the prototypeof the newly created objects  such as;
-//lets add a method manually to the class
 console.log(person1.__proto__ === PersonClass.prototype); //returns true
 
 //----------------------------------------------------------------------------------------------------------
+//lets add a method manually to the class
 PersonClass.prototype.percentage = function () {
   return this.grades / 100;
 };
 //the percentage is added manually to the class and now i am calling this on person1
 console.log(person1.percentage()); //and yet it works properly
+
