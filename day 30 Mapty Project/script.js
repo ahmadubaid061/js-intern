@@ -20,7 +20,7 @@ const input_distance = document.querySelector(".form__input--distance");
 const input_duration = document.querySelector(".form__input--duration");
 const input_cadence = document.querySelector(".form__input--cadence");
 const input_elevation = document.querySelector(".form__input--elevation");
-
+//-----------------------------------------------------------------------------------------finding current position coordinates using geoLocation API-------------------------
 if (navigator.geolocation) {
   navigator.geolocation.getCurrentPosition(
     function (position) {
@@ -30,7 +30,8 @@ if (navigator.geolocation) {
       const { latitude } = position.coords;
       const { longitude } = position.coords;
       //now creating URL from these coords
-      //const url = `https://www.google.com/maps?q=${latitude},${longitude}`; //this gives us the current location url
+      const url = `https://www.google.com/maps?q=${latitude},${longitude}`; //this gives us the current location url
+      //--------------------------------------------------------------------------------------------------using Leaflet library to display map based on current position------
       //now to display the map based on these coordinates we need leaflet library --------copying code from there website
       //changing var to const
       //the L.map(here the string should be the id name of the div containing map)
@@ -56,4 +57,5 @@ if (navigator.geolocation) {
     }
   );
 }
+
 
