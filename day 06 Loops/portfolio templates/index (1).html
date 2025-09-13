@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ubaid Ahmad - Portfolio</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        .gradient-bg { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); }
+        .card-hover { transition: transform 0.3s ease, box-shadow 0.3s ease; }
+        .card-hover:hover { transform: translateY(-5px); box-shadow: 0 20px 40px rgba(0,0,0,0.1); }
+        .typing-effect { 
+            border-right: 2px solid #667eea;
+            animation: blink 1s infinite;
+        }
+        @keyframes blink { 50% { border-color: transparent; } }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <!-- Navigation -->
+    <nav class="fixed top-0 w-full bg-white/90 backdrop-blur-md z-50 border-b border-gray-100">
+        <div class="max-w-6xl mx-auto px-6 py-4">
+            <div class="flex justify-between items-center">
+                <div class="text-2xl font-bold text-gray-800">UA</div>
+                <div class="hidden md:flex space-x-8">
+                    <a href="#home" class="text-gray-700 hover:text-blue-600 transition-colors">Home</a>
+                    <a href="#about" class="text-gray-700 hover:text-blue-600 transition-colors">About</a>
+                    <a href="#projects" class="text-gray-700 hover:text-blue-600 transition-colors">Projects</a>
+                    <a href="#skills" class="text-gray-700 hover:text-blue-600 transition-colors">Skills</a>
+                    <a href="#contact" class="text-gray-700 hover:text-blue-600 transition-colors">Contact</a>
+                </div>
+                <button class="md:hidden">
+                    <i data-lucide="menu" class="w-6 h-6"></i>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="min-h-screen gradient-bg flex items-center">
+        <div class="max-w-6xl mx-auto px-6 text-white">
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <div>
+                    <h1 class="text-5xl md:text-6xl font-bold mb-6">
+                        Hi, I'm <br>
+                        <span class="typing-effect">Ubaid Ahmad</span>
+                    </h1>
+                    <p class="text-xl md:text-2xl mb-8 text-gray-100">
+                        Full-Stack Developer & UI/UX Designer
+                    </p>
+                    <p class="text-lg mb-8 text-gray-200 leading-relaxed">
+                        I create beautiful, functional, and user-centered digital experiences that make a difference.
+                    </p>
+                    <div class="flex flex-wrap gap-4">
+                        <a href="#projects" class="bg-white text-purple-600 px-8 py-3 rounded-full font-semibold hover:bg-gray-100 transition-colors">
+                            View My Work
+                        </a>
+                        <a href="#contact" class="border-2 border-white px-8 py-3 rounded-full font-semibold hover:bg-white hover:text-purple-600 transition-colors">
+                            Get In Touch
+                        </a>
+                    </div>
+                </div>
+                <div class="flex justify-center">
+                    <div class="w-80 h-80 rounded-full bg-white/10 backdrop-blur-md flex items-center justify-center">
+                        <img src="keys/professional-developer-avatar?prompt=Professional%20developer%20avatar%20illustration%2C%20clean%20minimalist%20style%2C%20friendly%20smile%2C%20modern%20tech%20background" 
+                             alt="Ubaid Ahmad" class="w-72 h-72 rounded-full object-cover">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-20 bg-white">
+        <div class="max-w-6xl mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-bold text-gray-800 mb-4">About Me</h2>
+                <p class="text-gray-600 max-w-2xl mx-auto">
+                    Passionate about creating digital solutions that combine beautiful design with powerful functionality.
+                </p>
+            </div>
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <div>
+                    <h3 class="text-2xl font-semibold mb-6 text-gray-800">My Story</h3>
+                    <p class="text-gray-600 mb-6 leading-relaxed">
+                        With several years of experience in web development and design, I specialize in creating 
+                        responsive, user-friendly applications that solve real-world problems. I'm passionate about 
+                        clean code, intuitive design, and continuous learning.
+                    </p>
+                    <p class="text-gray-600 mb-6 leading-relaxed">
+                        When I'm not coding, you can find me exploring new technologies, contributing to open-source 
+                        projects, or sharing knowledge with the developer community.
+                    </p>
+                    <div class="flex flex-wrap gap-3">
+                        <span class="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm">Problem Solver</span>
+                        <span class="bg-green-100 text-green-800 px-3 py-1 rounded-full text-sm">Team Player</span>
+                        <span class="bg-purple-100 text-purple-800 px-3 py-1 rounded-full text-sm">Quick Learner</span>
+                    </div>
+                </div>
+                <div class="bg-gray-50 p-8 rounded-2xl">
+                    <h4 class="text-xl font-semibold mb-6 text-gray-800">Quick Facts</h4>
+                    <div class="space-y-4">
+                        <div class="flex items-center">
+                            <i data-lucide="map-pin" class="w-5 h-5 text-blue-600 mr-3"></i>
+                            <span class="text-gray-700">Based in [Your Location]</span>
+                        </div>
+                        <div class="flex items-center">
+                            <i data-lucide="coffee" class="w-5 h-5 text-blue-600 mr-3"></i>
+                            <span class="text-gray-700">Coffee Enthusiast</span>
+                        </div>
+                        <div class="flex items-center">
+                            <i data-lucide="code" class="w-5 h-5 text-blue-600 mr-3"></i>
+                            <span class="text-gray-700">3+ Years Experience</span>
+                        </div>
+                        <div class="flex items-center">
+                            <i data-lucide="heart" class="w-5 h-5 text-blue-600 mr-3"></i>
+                            <span class="text-gray-700">Loves Clean Code</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="py-20 bg-gray-50">
+        <div class="max-w-6xl mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-bold text-gray-800 mb-4">Featured Projects</h2>
+                <p class="text-gray-600 max-w-2xl mx-auto">
+                    Here are some of my recent projects that showcase my skills and creativity.
+                </p>
+            </div>
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Project 1 -->
+                <div class="bg-white rounded-2xl overflow-hidden card-hover">
+                    <div class="h-48 bg-gradient-to-br from-blue-500 to-purple-600 relative">
+                        <img src="keys/ecommerce-project?prompt=Modern%20e-commerce%20website%20screenshot%2C%20clean%20interface%2C%20product%20grid%2C%20professional%20design" 
+                             alt="E-commerce Platform" class="w-full h-full object-cover">
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold mb-2 text-gray-800">E-commerce Platform</h3>
+                        <p class="text-gray-600 mb-4">
+                            A full-featured online shopping platform with payment integration and admin dashboard.
+                        </p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="bg-blue-100 text-blue-800 px-2 py-1 rounded text-sm">React</span>
+                            <span class="bg-green-100 text-green-800 px-2 py-1 rounded text-sm">Node.js</span>
+                            <span class="bg-purple-100 text-purple-800 px-2 py-1 rounded text-sm">MongoDB</span>
+                        </div>
+                        <div class="flex gap-4">
+                            <a href="#" class="text-blue-600 hover:text-blue-800 font-semibold">Live Demo</a>
+                            <a href="#" class="text-gray-600 hover:text-gray-800 font-semibold">GitHub</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 2 -->
+                <div class="bg-white rounded-2xl overflow-hidden card-hover">
+                    <div class="h-48 bg-gradient-to-br from-green-500 to-teal-600 relative">
+                        <img src="keys/task-management-app?prompt=Task%20management%20app%20interface%2C%20kanban%20board%2C%20modern%20UI%2C%20productivity%20dashboard" 
+                             alt="Task Management App" class="w-full h-full object-cover">
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold mb-2 text-gray-800">Task Management App</h3>
+                        <p class="text-gray-600 mb-4">
+                            A collaborative task management tool with real-time updates and team features.
+                        </p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="bg-blue-100 text-blue-800 px-2 py-1 rounded text-sm">Vue.js</span>
+                            <span class="bg-orange-100 text-orange-800 px-2 py-1 rounded text-sm">Firebase</span>
+                            <span class="bg-indigo-100 text-indigo-800 px-2 py-1 rounded text-sm">Tailwind</span>
+                        </div>
+                        <div class="flex gap-4">
+                            <a href="#" class="text-blue-600 hover:text-blue-800 font-semibold">Live Demo</a>
+                            <a href="#" class="text-gray-600 hover:text-gray-800 font-semibold">GitHub</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 3 -->
+                <div class="bg-white rounded-2xl overflow-hidden card-hover">
+                    <div class="h-48 bg-gradient-to-br from-orange-500 to-red-600 relative">
+                        <img src="keys/portfolio-website?prompt=Portfolio%20website%20design%2C%20clean%20layout%2C%20responsive%20design%2C%20professional%20appearance" 
+                             alt="Portfolio Website" class="w-full h-full object-cover">
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold mb-2 text-gray-800">Portfolio Website</h3>
+                        <p class="text-gray-600 mb-4">
+                            A responsive portfolio website with smooth animations and modern design.
+                        </p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="bg-yellow-100 text-yellow-800 px-2 py-1 rounded text-sm">HTML/CSS</span>
+                            <span class="bg-blue-100 text-blue-800 px-2 py-1 rounded text-sm">JavaScript</span>
+                            <span class="bg-pink-100 text-pink-800 px-2 py-1 rounded text-sm">GSAP</span>
+                        </div>
+                        <div class="flex gap-4">
+                            <a href="#" class="text-blue-600 hover:text-blue-800 font-semibold">Live Demo</a>
+                            <a href="#" class="text-gray-600 hover:text-gray-800 font-semibold">GitHub</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="py-20 bg-white">
+        <div class="max-w-6xl mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-bold text-gray-800 mb-4">Skills & Technologies</h2>
+                <p class="text-gray-600 max-w-2xl mx-auto">
+                    I work with modern technologies to build scalable and maintainable applications.
+                </p>
+            </div>
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <!-- Frontend -->
+                <div class="text-center">
+                    <div class="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i data-lucide="monitor" class="w-8 h-8 text-blue-600"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-4 text-gray-800">Frontend</h3>
+                    <div class="space-y-2">
+                        <span class="block text-gray-600">React & Vue.js</span>
+                        <span class="block text-gray-600">TypeScript</span>
+                        <span class="block text-gray-600">Tailwind CSS</span>
+                        <span class="block text-gray-600">SASS/SCSS</span>
+                    </div>
+                </div>
+
+                <!-- Backend -->
+                <div class="text-center">
+                    <div class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i data-lucide="server" class="w-8 h-8 text-green-600"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-4 text-gray-800">Backend</h3>
+                    <div class="space-y-2">
+                        <span class="block text-gray-600">Node.js & Express</span>
+                        <span class="block text-gray-600">Python & Django</span>
+                        <span class="block text-gray-600">REST APIs</span>
+                        <span class="block text-gray-600">GraphQL</span>
+                    </div>
+                </div>
+
+                <!-- Database -->
+                <div class="text-center">
+                    <div class="w-16 h-16 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i data-lucide="database" class="w-8 h-8 text-purple-600"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-4 text-gray-800">Database</h3>
+                    <div class="space-y-2">
+                        <span class="block text-gray-600">MongoDB</span>
+                        <span class="block text-gray-600">PostgreSQL</span>
+                        <span class="block text-gray-600">Firebase</span>
+                        <span class="block text-gray-600">Redis</span>
+                    </div>
+                </div>
+
+                <!-- Tools -->
+                <div class="text-center">
+                    <div class="w-16 h-16 bg-orange-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i data-lucide="wrench" class="w-8 h-8 text-orange-600"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-4 text-gray-800">Tools</h3>
+                    <div class="space-y-2">
+                        <span class="block text-gray-600">Git & GitHub</span>
+                        <span class="block text-gray-600">Docker</span>
+                        <span class="block text-gray-600">AWS</span>
+                        <span class="block text-gray-600">Figma</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-20 bg-gray-50">
+        <div class="max-w-6xl mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-bold text-gray-800 mb-4">Let's Work Together</h2>
+                <p class="text-gray-600 max-w-2xl mx-auto">
+                    Have a project in mind? I'd love to hear about it. Let's discuss how we can bring your ideas to life.
+                </p>
+            </div>
+            <div class="grid md:grid-cols-2 gap-12">
+                <div>
+                    <h3 class="text-2xl font-semibold mb-6 text-gray-800">Get In Touch</h3>
+                    <div class="space-y-6">
+                        <div class="flex items-center">
+                            <div class="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center mr-4">
+                                <i data-lucide="mail" class="w-6 h-6 text-blue-600"></i>
+                            </div>
+                            <div>
+                                <p class="text-gray-800 font-semibold">Email</p>
+                                <p class="text-gray-600">ubaid@example.com</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center">
+                            <div class="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center mr-4">
+                                <i data-lucide="phone" class="w-6 h-6 text-green-600"></i>
+                            </div>
+                            <div>
+                                <p class="text-gray-800 font-semibold">Phone</p>
+                                <p class="text-gray-600">+1 (555) 123-4567</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center">
+                            <div class="w-12 h-12 bg-purple-100 rounded-full flex items-center justify-center mr-4">
+                                <i data-lucide="linkedin" class="w-6 h-6 text-purple-600"></i>
+                            </div>
+                            <div>
+                                <p class="text-gray-800 font-semibold">LinkedIn</p>
+                                <p class="text-gray-600">linkedin.com/in/ubaidahmad</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <form class="bg-white p-8 rounded-2xl">
+                    <div class="grid md:grid-cols-2 gap-6 mb-6">
+                        <input type="text" placeholder="Your Name" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none">
+                        <input type="email" placeholder="Your Email" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none">
+                    </div>
+                    <input type="text" placeholder="Subject" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none mb-6">
+                    <textarea placeholder="Your Message" rows="5" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none mb-6 resize-none"></textarea>
+                    <button type="submit" class="w-full bg-gradient-to-r from-blue-600 to-purple-600 text-white py-3 px-6 rounded-lg font-semibold hover:from-blue-700 hover:to-purple-700 transition-all duration-300">
+                        Send Message
+                    </button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-12">
+        <div class="max-w-6xl mx-auto px-6">
+            <div class="text-center">
+                <div class="text-3xl font-bold mb-4">UA</div>
+                <p class="text-gray-400 mb-6">Building digital experiences that matter</p>
+                <div class="flex justify-center space-x-6 mb-8">
+                    <a href="#" class="text-gray-400 hover:text-white transition-colors">
+                        <i data-lucide="github" class="w-6 h-6"></i>
+                    </a>
+                    <a href="#" class="text-gray-400 hover:text-white transition-colors">
+                        <i data-lucide="linkedin" class="w-6 h-6"></i>
+                    </a>
+                    <a href="#" class="text-gray-400 hover:text-white transition-colors">
+                        <i data-lucide="twitter" class="w-6 h-6"></i>
+                    </a>
+                    <a href="#" class="text-gray-400 hover:text-white transition-colors">
+                        <i data-lucide="instagram" class="w-6 h-6"></i>
+                    </a>
+                </div>
+                <p class="text-gray-400 text-sm">© 2024 Ubaid Ahmad. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script type="module">
+        // Initialize Lucide icons
+        lucide.createIcons();
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Typing effect
+        const typingText = document.querySelector('.typing-effect');
+        if (typingText) {
+            const text = 'Ubaid Ahmad';
+            let index = 0;
+            
+            function typeWriter() {
+                if (index < text.length) {
+                    typingText.textContent = text.slice(0, index + 1);
+                    index++;
+                    setTimeout(typeWriter, 150);
+                }
+            }
+            
+            // Start typing effect after a brief delay
+            setTimeout(typeWriter, 1000);
+        }
+
+        // Form submission
+        document.querySelector('form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Thank you for your message! This is a demo form.');
+        });
+
+        // Add scroll effect to navigation
+        window.addEventListener('scroll', function() {
+            const nav = document.querySelector('nav');
+            if (window.scrollY > 100) {
+                nav.classList.add('bg-white/95');
+            } else {
+                nav.classList.remove('bg-white/95');
+            }
+        });
+    </script>
+</body>
+</html>
