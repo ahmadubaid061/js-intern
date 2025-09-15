@@ -22,7 +22,7 @@ const input_cadence = document.querySelector(".form__input--cadence");
 const input_elevation = document.querySelector(".form__input--elevation");
 let map,mapEvent;
 //--------------------------------------------------------------------------------------------function for clearing and closing form when needed---------------------------
-clearForm=function() {
+const clearForm=function() {
   input_cadence.value = "";
   input_distance.value = "";
   input_duration.value = "";
@@ -98,6 +98,7 @@ form.addEventListener("submit", function (e) {
   
   clearForm();
 });
+
 
 
 
