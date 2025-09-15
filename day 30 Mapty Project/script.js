@@ -68,6 +68,7 @@ if (navigator.geolocation) {
         mapEvent=Event;   //this is needed in form submition function
          //-------------------------------------------------------------------------------------------------------------------now displaying form
         form.classList.remove("hidden");
+        input_distance.focus();//curser is focused on distance field
       });
     },
     function () {
@@ -103,6 +104,7 @@ input_type.addEventListener("change", function () {
   input_elevation.closest(".form__row").classList.toggle("form__row--hidden");
   input_cadence.closest(".form__row").classList.toggle("form__row--hidden");
 });
+
 
 
 
