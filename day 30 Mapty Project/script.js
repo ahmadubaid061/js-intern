@@ -40,22 +40,43 @@ if (navigator.geolocation) {
       //the last value set to 13 is the zoom level of the map
       const coordinates = [latitude, longitude];
       const map = L.map("map").setView(coordinates, 13);
-      //-------------------------------the map layout design can be changed by L.tileLayer below,,,
+      //------------------------------------------------------------------------------------------------------the map layout design can be changed by L.tileLayer below,,,
       //L.tileLayer("https://tile.openstreetmap.fr/hot/{z}/{x}/{y}.png" ---just another layout
       L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
         attribution:
           '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
       }).addTo(map);
       //replacing [51.5, -0.09] with coordinates array for placing marker on the current location
-      L.marker(coordinates)
-        .addTo(map)
-        .bindPopup("A pretty CSS popup.<br> Easily customizable.")
-        .openPopup();
+      // L.marker(coordinates) //takes coordinates array [latitude,longitude]
+      //   .addTo(map)
+      //   .bindPopup("A pretty CSS popup.<br> Easily customizable.")
+      //   .openPopup();
+
+      //-------------------------------------------------------------------------------------------------------------------- diplaying a marker on click----------------------
+      map.on("click", function (Event) {
+        //the Event(when we click on map ) has a prototype peoperty "latlng" which contaains latitude and longitude
+        const { lat, lng } = Event.latlng; //gives us latitude and longitude
+        L.marker([lat, lng]) //it takes coordinates in the form of an array
+          .addTo(map)
+          .bindPopup(
+            L.popup({
+              maxWidth: 250,
+              minWidth: 100,
+              autClose: true,
+              closeOnClick: false,
+              className: "running-popup",
+              // openOnHover: true,
+            })
+          )
+          .setPopupContent("workout")
+          .openPopup(); //calls the popup to deisplay a message
+      });
     },
     function () {
       alert('we couldn"t get your current location');
     }
   );
 }
+
 
 
