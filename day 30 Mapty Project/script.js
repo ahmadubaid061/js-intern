@@ -21,7 +21,43 @@ const input_duration = document.querySelector(".form__input--duration");
 const input_cadence = document.querySelector(".form__input--cadence");
 const input_elevation = document.querySelector(".form__input--elevation");
 // let map,mapEvent;
-//---------------------------------------------------------------------------------------creating a class App for handling all the combined events for cycling and running
+//-------------------------------------------------------------------------creating a workout class from which then we can create child classes for running and cycling
+class Workout {
+  date = new Date();
+  id = (Date.now() + " ").slice(-10);
+  constructor(coords, distance, duration) {
+    this.coords = coords; //[lat,lng]
+    this.distance = distance;
+    this.duration = duration;
+  }
+}
+//---------------------------------------------------------------------------child class for running
+class Running extends Workout {
+  constructor(coords, distance, duration, cadence) {
+    super(coords, distance, duration);
+    this.cadence = cadence;
+    this.calcPace();
+  }
+  //method for pace
+  calcPace() {
+    this.pace = this.cadence / this.duration;
+    // return this.pace;
+  }
+}
+//---------------------------------------------------------------------------child class for Cycling
+class Cycling extends Workout {
+  constructor(coords, distance, duration, elevation) {
+    super(coords, distance, duration);
+    this.elevtion_Gain = elevation;
+    this.calcSpeed();
+  }
+  //method for pace
+  calcSpeed() {
+    this.speed = this.elevtion_Gain / (this.duration / 60);
+    // return this.speed;
+  }
+}
+//------------------------------------------------------------------------------------------------------------------------------------class app Archetichture
 class App {
   
   #map;
@@ -200,6 +236,7 @@ const app = new App();
 //   input_elevation.closest(".form__row").classList.toggle("form__row--hidden");
 //   input_cadence.closest(".form__row").classList.toggle("form__row--hidden");
 // });
+
 
 
 
