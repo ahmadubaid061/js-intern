@@ -66,6 +66,7 @@ class App {
     this._getPosition(); //called immediatly after the document loads
     input_type.addEventListener("change", this._toggleElevation);
     form.addEventListener("submit", this._newWorkout.bind(this));
+     const { lat, lng } = this.#mapEvent.latlng; //prototype property of the mapEvent
   }
   //----------------------------------------------------------------------------------------------------------------class method-1 for get current position
 
@@ -88,7 +89,7 @@ class App {
   _newWorkout(e) {
     e.preventDefault();
 
-    const { lat, lng } = this.#mapEvent.latlng; //prototype property of the mapEvent
+   
     // L.marker(array of coordinates)
     L.marker([lat, lng])
       .addTo(this.#map)
@@ -236,6 +237,7 @@ const app = new App();
 //   input_elevation.closest(".form__row").classList.toggle("form__row--hidden");
 //   input_cadence.closest(".form__row").classList.toggle("form__row--hidden");
 // });
+
 
 
 
