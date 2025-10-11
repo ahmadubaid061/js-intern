@@ -91,10 +91,46 @@ class App {
  //----------------------------------------------------------------------------------------------------------------new workout method-3 is added on submitting form
   _newWorkout(e) {
     e.preventDefault();
+   const isValid = (...inputs) => inputs.every((inp) => Number.isFinite(inp));
+    //checks if the input is a positive integer value or not
+    const allPositive = (...inputs) => inputs.every((inp) => inp > 0);
+    
+    //get data from the form
+    const type = input_type.value;
+    const distance = +input_distance.value;
+    const duration = +input_duration.value;
+    const { lat, lng } = this.#mapEvent.latlng; //prototype property of the mapEvent
+    let workout;
+    //if running create a running object
+    if (type == "running") {
+      const cadence = +input_cadence.value;
+      //check if data is valid
+      if (
+        !isValid(distance, duration, cadence) ||
+        !allPositive(distance, duration, cadence)
+      )
+        return alert("input must be a positive value");
+      //creating new object for workouts array
+      workout = new Running([lat, lng], distance, duration, cadence);
+    }
+    //if cycling creata a cycling object
+    if (type == "cycling") {
+      const elevation = +input_elevation.value;
+      //check if data is valid
+      if (
+        !isValid(distance, duration, elevation) ||
+        !allPositive(distance, duration)
+      )
+        return alert("input must be a positive value");
+      //creating new object for workouts array
+      workout = new Cycling([lat, lng], distance, duration, elevation);
+    }
+    //add the new object to workout array
+    this.#workouts.push(workout);
+    //render workout on the map as a marker
 
-   
     // L.marker(array of coordinates)
-    L.marker([lat, lng])
+    L.marker(workout.coords)
       .addTo(this.#map)
       .bindPopup(
         L.popup({
@@ -102,12 +138,14 @@ class App {
           minWidth: 100,
           autoClose: true,
           closeOnClick: false,
-          className: "running-popup",
+          className: `${input_type.value}-popup`,
         })
       )
       .setPopupContent("workout")
       .openPopup(); //calls the popup to deisplay a message
 
+    //render workout in the workout list
+    container_Workouts.insertAdjacentHTML("afterbegin", list_item());
     this._clearForm();
   }
   //--------------------------------------------------------------------------------------------------------method-4 creating and desplaying map using leaflet library
@@ -240,6 +278,7 @@ const app = new App();
 //   input_elevation.closest(".form__row").classList.toggle("form__row--hidden");
 //   input_cadence.closest(".form__row").classList.toggle("form__row--hidden");
 // });
+
 
 
 
