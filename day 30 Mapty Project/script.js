@@ -62,6 +62,7 @@ class App {
   
   #map;
   #mapEvent;
+  #workouts=[];
   constructor() {
     this._getPosition(); //called immediatly after the document loads
     input_type.addEventListener("change", this._toggleElevation);
@@ -237,6 +238,7 @@ const app = new App();
 //   input_elevation.closest(".form__row").classList.toggle("form__row--hidden");
 //   input_cadence.closest(".form__row").classList.toggle("form__row--hidden");
 // });
+
 
 
 
