@@ -33,6 +33,7 @@ class Workout {
 }
 //---------------------------------------------------------------------------child class for running
 class Running extends Workout {
+  type='running';
   constructor(coords, distance, duration, cadence) {
     super(coords, distance, duration);
     this.cadence = cadence;
@@ -46,6 +47,7 @@ class Running extends Workout {
 }
 //---------------------------------------------------------------------------child class for Cycling
 class Cycling extends Workout {
+  type='cycling';
   constructor(coords, distance, duration, elevation) {
     super(coords, distance, duration);
     this.elevtion_Gain = elevation;
@@ -238,6 +240,7 @@ const app = new App();
 //   input_elevation.closest(".form__row").classList.toggle("form__row--hidden");
 //   input_cadence.closest(".form__row").classList.toggle("form__row--hidden");
 // });
+
 
 
 
