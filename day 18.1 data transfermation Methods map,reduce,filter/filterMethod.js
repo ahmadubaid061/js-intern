@@ -12,5 +12,6 @@ console.log(deposits);
 
 const withdrawals = array
   .filter((element) => element < 0)
-  .map((element) => Math.abs(element)); //map is used to remove minus sign from negative numbers
+  .map((element) => Math.abs(element)); //Math.absolute  is used to remove minus sign from negative numbers
 console.log(withdrawals);
+
