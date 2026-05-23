@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Q2 - POST Request</title>
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+</head>
+<body>
+
+  <h2>Q2 - Post a New Resource</h2>
+  <button onclick="createPost()">Create Post</button>
+  <p id="status"></p>
+  
+   <p id="mypost"></p>
+  <script>
+
+    function createPost() {
+
+  const newPost = {
+    title: "Ubaid Ahmad",
+    body: "Age: 23 years old. Registration No: 2410-0011",
+    userId: 1
+  };
+
+  axios.post('https://jsonplaceholder.typicode.com/posts', newPost)
+    .then(function(response) {
+
+      console.log("Post created successfully!");
+
+      document.getElementById('status').innerText =
+        "Post created! ID assigned: " + response.data.id;
+
+      document.getElementById('mypost').innerText =
+        "Post Title: " + newPost.title + "\n" +
+        "Post Body: " + newPost.body + "\n" +
+        "Post UserID: " + newPost.userId;
+
+    })
+    .catch(function(error) {
+      console.log("Error:", error.message);
+      document.getElementById('status').innerText = "Something went wrong.";
+    });
+
+}
+
+  </script>
+
+</body>
+</html>

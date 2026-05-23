@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Q4 - CRUD Operations</title>
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+</head>
+<body>
+
+  <h2>Q4 - CRUD Operations</h2>
+
+  <button onclick="getPost()">GET Post</button>
+  <button onclick="createPost()">POST New</button>
+  <button onclick="updatePost()">PUT Update</button>
+  <button onclick="deletePost()">DELETE Post</button>
+
+  <pre id="output"></pre>
+
+  <script>
+
+    const output = document.getElementById('output');
+
+    // READ - fetch post number 1
+    function getPost() {
+      axios.get('https://jsonplaceholder.typicode.com/posts/1')
+        .then(function(response) {
+          output.innerText = "GET SUCCESS:\n" +
+            JSON.stringify(response.data, null, 2);
+        })
+        .catch(function(error) {
+          output.innerText = "GET Error: " + error.message;
+        });
+    }
+
+    // CREATE - send a new post
+    function createPost() {
+      const newPost = {
+        title: "Ubaid Ahmad",
+        body: "Age: 23. Reg No: 2410-0011",
+        userId: 1
+      };
+
+      axios.post('https://jsonplaceholder.typicode.com/posts', newPost)
+        .then(function(response) {
+          output.innerText = "POST SUCCESS:\n" +
+            JSON.stringify(response.data, null, 2);
+        })
+        .catch(function(error) {
+          output.innerText = "POST Error: " + error.message;
+        });
+    }
+
+    // UPDATE - edit post number 1
+    function updatePost() {
+      const updatedPost = {
+        id: 1,
+        title: "Updated Title by Ubaid",
+        body: "This post has been updated.",
+        userId: 1
+      };
+
+      axios.put('https://jsonplaceholder.typicode.com/posts/1', updatedPost)
+        .then(function(response) {
+          output.innerText = "PUT SUCCESS:\n" +
+            JSON.stringify(response.data, null, 2);
+        })
+        .catch(function(error) {
+          output.innerText = "PUT Error: " + error.message;
+        });
+    }
+
+    // DELETE - remove post number 1
+    function deletePost() {
+      axios.delete('https://jsonplaceholder.typicode.com/posts/1')
+        .then(function(response) {
+          output.innerText = "DELETE SUCCESS:\n" +
+            "Post deleted! Server returned: " +
+            JSON.stringify(response.data, null, 2);
+        })
+        .catch(function(error) {
+          output.innerText = "DELETE Error: " + error.message;
+        });
+    }
+
+  </script>
+
+</body>
+</html>

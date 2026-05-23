@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Q7 - Axios Instance</title>
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+</head>
+<body>
+
+  <h2>Q7 - Axios Instance with Base URL</h2>
+
+  <button onclick="getPosts()">Get Posts</button>
+  <button onclick="getUsers()">Get Users</button>
+  <button onclick="getTodos()">Get Todos</button>
+
+  <pre id="output"></pre>
+
+  <script>
+
+    // Create the reusable Axios instance — configured ONCE here
+    const api = axios.create({
+
+      baseURL: 'https://jsonplaceholder.typicode.com',
+
+      timeout: 5000, // 5 seconds — request fails if server takes longer
+
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer my-fake-token-123'
+      }
+
+    });
+
+    const output = document.getElementById('output');
+
+    // API call 1 — using instance to get posts
+    function getPosts() {
+      api.get('/posts/1')  // baseURL + /posts/1
+        .then(function(response) {
+          output.innerText =
+            "POSTS RESPONSE:\n\n" +
+            JSON.stringify(response.data, null, 2);
+        })
+        .catch(function(error) {
+          output.innerText = "Error: " + error.message;
+        });
+    }
+
+    // API call 2 — using instance to get users
+    function getUsers() {
+      api.get('/users/1')  // baseURL + /users/1
+        .then(function(response) {
+          output.innerText =
+            "USERS RESPONSE:\n\n" +
+            JSON.stringify(response.data, null, 2);
+        })
+        .catch(function(error) {
+          output.innerText = "Error: " + error.message;
+        });
+    }
+
+    // API call 3 — using instance to get todos
+    function getTodos() {
+      api.get('/todos/1')  // baseURL + /todos/1
+        .then(function(response) {
+          output.innerText =
+            "TODOS RESPONSE:\n\n" +
+            JSON.stringify(response.data, null, 2);
+        })
+        .catch(function(error) {
+          output.innerText = "Error: " + error.message;
+        });
+    }
+
+  </script>
+
+</body>
+</html>
