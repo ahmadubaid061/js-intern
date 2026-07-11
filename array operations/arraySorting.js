@@ -26,4 +26,5 @@ console.log(marks);
 //================================simplifing the above function===================
 //ascending sort
 marks.sort((a, b) => a - b); //if a is greater it keeps the order but if a is smaller then it changes the order
+
 console.log(marks);
