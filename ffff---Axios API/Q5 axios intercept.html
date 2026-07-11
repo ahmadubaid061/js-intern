@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Q5 - Axios Interceptors</title>
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+</head>
+<body>
+
+  <h2>Q5 - Axios Interceptors</h2>
+  <button onclick="makeRequest()">Make Request</button>
+  <pre id="output"></pre>
+
+  <script>
+
+    // REQUEST INTERCEPTOR
+    // Runs automatically before every request is sent
+    axios.interceptors.request.use(function(config) {
+
+      // Attach fake token to every request header
+      config.headers['Authorization'] = 'Bearer my-fake-token-123';
+
+      console.log("Request interceptor fired!");
+      console.log("Authorization header added:", config.headers['Authorization']);
+
+      return config; // must always return config
+
+    });
+
+    // RESPONSE INTERCEPTOR
+    // Runs automatically after every response arrives
+    axios.interceptors.response.use(function(response) {
+
+      // Log the status code of every response
+      console.log("Response interceptor fired!");
+      console.log("Response status code:", response.status);
+
+      return response; // must always return response
+
+    });
+
+    // A normal request — interceptors fire automatically
+    function makeRequest() {
+      axios.get('https://jsonplaceholder.typicode.com/posts/1')
+        .then(function(response) {
+          document.getElementById('output').innerText =
+            "Response received!\n" +
+            "Status: " + response.status + "\n\n" +
+            JSON.stringify(response.data, null, 2);
+        })
+        .catch(function(error) {
+          document.getElementById('output').innerText =
+            "Error: " + error.message;
+        });
+    }
+
+  </script>
+
+</body>
+</html>

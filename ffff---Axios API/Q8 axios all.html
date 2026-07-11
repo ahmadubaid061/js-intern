@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Q8 - Concurrent Requests</title>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+</head>
+
+<body>
+
+    <h2>Q8 - Concurrent API Requests</h2>
+    <button onclick="fetchAll()">Fetch All Data</button>
+    <p id="status"></p>
+
+    <h3>Posts</h3>
+    <div id="posts"></div>
+
+    <h3>Users</h3>
+    <div id="users"></div>
+
+    <h3>Todos</h3>
+    <div id="todos"></div>
+
+    <script>
+
+        function fetchAll() {
+
+            document.getElementById('status').innerText = 'Loading all data...';
+
+            // All three requests fire at the exact same time
+            const postsRequest = axios.get('https://jsonplaceholder.typicode.com/posts?_limit=3');
+            const usersRequest = axios.get('https://jsonplaceholder.typicode.com/users?_limit=3');
+            const todosRequest = axios.get('https://jsonplaceholder.typicode.com/todos?_limit=3');
+
+            // Wait for ALL three to finish before doing anything
+            Promise.all([postsRequest, usersRequest, todosRequest])
+                .then(function (responses) {
+
+                    // responses is an array — same order as requests above
+                    const posts = responses[0].data;
+                    const users = responses[1].data;
+                    const todos = responses[2].data;
+
+                    document.getElementById('status').innerText = 'All data loaded successfully!';
+
+                    // Display posts
+                    let postsHTML = '';
+                    posts.forEach(function (post) {
+                        postsHTML += '<p><strong>' + post.title + '</strong><br>' + post.body + '</p>';
+                    });
+                    document.getElementById('posts').innerHTML = postsHTML;
+
+                    // Display users
+                    let usersHTML = '';
+                    users.forEach(function (user) {
+                        usersHTML += '<p>' + user.name + ' — ' + user.email + '</p>';
+                    });
+                    document.getElementById('users').innerHTML = usersHTML;
+
+                    // Display todos
+                    let todosHTML = '';
+                    todos.forEach(function (todo) {
+                        todosHTML +=
+                            '<p>' + todo.title +
+                            ' — ' + (todo.completed ? '✅ Done' : '❌ Not done') +
+                            '</p>';
+                    });
+                    document.getElementById('todos').innerHTML = todosHTML;
+
+                })
+                .catch(function (error) {
+
+                    // If ANY one request fails, this catch fires
+                    document.getElementById('status').innerText =
+                        'Error loading data: ' + error.message;
+
+                });
+        }
+
+    </script>
+
+</body>
+
+</html>

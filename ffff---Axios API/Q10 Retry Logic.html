@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Q10 - Retry Logic</title>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+</head>
+
+<body>
+
+    <h2>Q10 - Retry Logic on Failure</h2>
+    <button onclick="startRequest()">Make Request</button>
+    <pre id="output"></pre>
+
+    <script>
+
+        const output = document.getElementById('output');
+
+        // This function waits for a given number of milliseconds
+        function wait(ms) {
+            return new Promise(function (resolve) {
+                setTimeout(resolve, ms);
+            });
+        }
+
+        // The main retry wrapper function
+        // url         = the endpoint to call
+        // maxRetries  = how many times to retry (3)
+        // delay       = how long to wait between retries in ms (2000 = 2 seconds)
+        // attempt     = tracks current attempt number (starts at 1)
+        async function fetchWithRetry(url, maxRetries = 3, delay = 2000, attempt = 1) {
+
+            try {
+
+                output.innerText = 'Attempt ' + attempt + ' — sending request...';
+
+                const response = await axios.get(url);
+
+                // If we reach here the request succeeded
+                output.innerText =
+                    'Success on attempt ' + attempt + '!\n\n' +
+                    JSON.stringify(response.data, null, 2);
+
+            } catch (error) {
+
+                // Request failed — check if we have retries left
+                if (attempt <= maxRetries) {
+
+                    output.innerText =
+                        'Attempt ' + attempt + ' failed: ' + error.message + '\n' +
+                        'Waiting 2 seconds before retry...';
+
+                    // Wait 2 seconds then try again
+                    await wait(delay);
+
+                    // Call the same function again with attempt + 1
+                    await fetchWithRetry(url, maxRetries, delay, attempt + 1);
+
+                } else {
+
+                    // No retries left — give up and show final error
+                    output.innerText =
+                        'All ' + maxRetries + ' attempts failed.\n' +
+                        'Final error: ' + error.message;
+
+                }
+            }
+        }
+
+        function startRequest() {
+
+            // Using an invalid URL to demonstrate retrying on failure
+            fetchWithRetry('https://jsonplaceholder.typicode.com/invalidendpoint');
+
+        }
+
+    </script>
+
+</body>
+
+</html>
